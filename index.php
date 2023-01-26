@@ -2,7 +2,7 @@
 require_once('./utils/auth.php');
 
 
-$sql = "SELECT id, title, description, start, end, color, amount, booking_type, duration_type, check_in_time, check_out_time FROM events ";
+$sql = "SELECT id, title, description, start, end, color, amount, booking_type, duration_type, check_in_time, check_out_time,hold_for_days FROM events ";
 
 $req = $auth->prepare($sql);
 $req->execute();
@@ -116,8 +116,8 @@ $events = $req->fetchAll();
 
 
 							<div class="form-group">
-								<label for="booking_type" class="col-sm-2 control-label">Booking Type</label>
-								<div class="col-sm-5">
+								<label for="booking_type" class="col-sm-5 control-label">Booking Type</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="booking_type" id="booking_type">
 										<option value="on_hold">Oh Hold</option>
 										<option value="final_booking">Final Booking</option>
@@ -129,8 +129,8 @@ $events = $req->fetchAll();
 
 
 							<div class="form-group">
-								<label for="duration_type" class="col-sm-2 control-label">Duration Type</label>
-								<div class="col-sm-5">
+								<label for="duration_type" class="col-sm-5 control-label">Duration Type</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="duration_type" id="duration_type">
 										<option value="half_day">Half Day</option>
 										<option value="full_day">Full Day</option>
@@ -140,8 +140,8 @@ $events = $req->fetchAll();
 
 
 							<div class="form-group">
-								<label for="check_in_time" class="col-sm-2 control-label">Check In Time</label>
-								<div class="col-sm-5">
+								<label for="check_in_time" class="col-sm-5 control-label">Check In Time</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="check_in_time" id="check_in_time">
 										<option value="0800">08 AM</option>
 										<option value="1600">04 PM</option>
@@ -149,12 +149,21 @@ $events = $req->fetchAll();
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="check_out_time" class="col-sm-2 control-label">Check Out Time</label>
-								<div class="col-sm-5">
+								<label for="check_out_time" class="col-sm-5 control-label">Check Out Time</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="check_out_time" id="check_out_time">
 										<option value="0600">06 AM</option>
 										<option value="1400">02 PM</option>
 									</select>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="hold_for_days" class="col-sm-5 control-label">Hold For Days</label>
+								<div class="col-sm-10">
+									<input type="number" step="any" name="hold_for_days" class="form-control" 
+									id="hold_for_days" placeholder="Hold For Days">
 								</div>
 							</div>
 
@@ -239,8 +248,8 @@ $events = $req->fetchAll();
 
 
 							<div class="form-group">
-								<label for="booking_type" class="col-sm-2 control-label">Booking Type</label>
-								<div class="col-sm-5">
+								<label for="booking_type" class="col-sm-5 control-label">Booking Type</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="booking_type" id="booking_type">
 										<option value="on_hold">Oh Hold</option>
 										<option value="final_booking">Final Booking</option>
@@ -252,8 +261,8 @@ $events = $req->fetchAll();
 
 
 							<div class="form-group">
-								<label for="duration_type" class="col-sm-2 control-label">Duration Type</label>
-								<div class="col-sm-5">
+								<label for="duration_type" class="col-sm-5 control-label">Duration Type</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="duration_type" id="duration_type">
 										<option value="half_day">Half Day</option>
 										<option value="full_day">Full Day</option>
@@ -262,8 +271,8 @@ $events = $req->fetchAll();
 							</div>
 
 							<div class="form-group">
-								<label for="check_in_time" class="col-sm-2 control-label">Check In Time</label>
-								<div class="col-sm-5">
+								<label for="check_in_time" class="col-sm-5 control-label">Check In Time</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="check_in_time" id="check_in_time">
 										<option value="0800">08 AM</option>
 										<option value="1600">04 PM</option>
@@ -271,8 +280,8 @@ $events = $req->fetchAll();
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="check_out_time" class="col-sm-2 control-label">Check Out Time</label>
-								<div class="col-sm-5">
+								<label for="check_out_time" class="col-sm-5 control-label">Check Out Time</label>
+								<div class="col-sm-10">
 									<select class="form-control" name="check_out_time" id="check_out_time">
 										<option value="0600">06 AM</option>
 										<option value="1400">02 PM</option>
@@ -280,6 +289,13 @@ $events = $req->fetchAll();
 								</div>
 							</div>
 
+							<div class="form-group">
+								<label for="hold_for_days" class="col-sm-5 control-label">Hold For Days</label>
+								<div class="col-sm-10">
+									<input type="number" step="any" name="hold_for_days" class="form-control" 
+									id="hold_for_days" placeholder="Hold For Days">
+								</div>
+							</div>
 
 							<div class="form-group">
 								<label for="title" class="col-sm-2 control-label">Title</label>
@@ -425,6 +441,8 @@ $events = $req->fetchAll();
 						$('#ModalEdit #check_in_time').val(event.check_in_time);
 						$('#ModalEdit #check_out_time').val(event.check_out_time);
 
+						$('#ModalEdit #hold_for_days').val(event.hold_for_days);
+
 						$('#ModalEdit #color').val(event.color);
 						$('#ModalEdit').modal('show');
 					});
@@ -466,6 +484,7 @@ $events = $req->fetchAll();
 							duration_type: '<?php echo $event['duration_type']; ?>',
 							check_in_time: '<?php echo $event['check_in_time']; ?>',
 							check_out_time: '<?php echo $event['check_out_time']; ?>',
+							hold_for_days: '<?php echo $event['hold_for_days']; ?>',
 							start: '<?php echo $start; ?>',
 							end: '<?php echo $end; ?>',
 							color: '<?php echo $event['color']; ?>',

@@ -4,8 +4,8 @@ require_once 'class.Event.php';
 
 class Recurrence extends Event {
 
-  function __construct( $__id, $__rid, $__eventType, $__title, $__description, $__start, $__end, $__color, $__amount,$__booking_type,$__duration_type,$__check_in_time,$__check_out_time ) {
-    parent::__construct( $__id, $__rid, $__eventType, $__title, $__description, $__start, $__end, $__color, $__amount,$__booking_type,$__duration_type,$__check_in_time,$__check_out_time );
+  function __construct( $__id, $__rid, $__eventType, $__title, $__description, $__start, $__end, $__color, $__amount,$__booking_type,$__duration_type,$__check_in_time,$__check_out_time, $__hold_for_days ) {
+    parent::__construct( $__id, $__rid, $__eventType, $__title, $__description, $__start, $__end, $__color, $__amount,$__booking_type,$__duration_type,$__check_in_time,$__check_out_time, $__hold_for_days );
   }
 
   // method overriding for calculating start, end dates

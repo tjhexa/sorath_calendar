@@ -18,9 +18,12 @@ if (isset($_POST['title'])) {
 	$check_in_time = sanitizeInput($_POST['check_in_time']);
 	$check_out_time = sanitizeInput($_POST['check_out_time']);
 
+	$hold_for_days = sanitizeInput($_POST['hold_for_days']);
 
-	$sql = "INSERT INTO events(title, description, start, end, color, amount,booking_type,duration_type, check_in_time,check_out_time) 
-	values ('$title', '$description', '$start', '$end', '$color', '$amount', '$booking_type','$duration_type', '$check_in_time','$check_out_time')";
+	$sql = "INSERT INTO events(title, description, start, end, color, amount,booking_type,duration_type, check_in_time,check_out_time,hold_for_days) 
+	values ('$title', '$description',
+	 '$start', '$end', '$color', '$amount', '$booking_type',
+	 '$duration_type', '$check_in_time','$check_out_time','$hold_for_days')";
 	echo $sql;
 	
 	$prepareQuery = $auth->prepare($sql);

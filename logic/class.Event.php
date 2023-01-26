@@ -18,9 +18,10 @@ class Event {
   var $check_out_time;
   var $check_in_time;
 
+  var $hold_for_days;
   
   function __construct( $__id, $__rid, $__eventType, $__title, $__description, $__start, $__end, $__color, $__amount
-  , $__booking_type, $__duration_type, $__check_in_time,$__check_out_time) { 
+  , $__booking_type, $__duration_type, $__check_in_time,$__check_out_time, $__hold_for_days) { 
     $this->id = $__id;
     $this->rid = $__rid;
     $this->eventType = $__eventType;
@@ -34,6 +35,7 @@ class Event {
     $this->duration_type = $__duration_type;
     $this->check_in_time = $__check_in_time;
     $this->check_out_time = $__check_out_time;
+    $this->hold_for_days = $__hold_for_days;
 
   }
 
