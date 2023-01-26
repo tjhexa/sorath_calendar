@@ -20,7 +20,11 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	 die ('Error executing the query.');
 	}
 	
-} else if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['color']) && isset($_POST['amount']) && isset($_POST['id'])){
+} else if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['color'])
+&& isset($_POST['duration_type'])
+&& isset($_POST['booking_type'])
+&& isset($_POST['amount']) 
+&& isset($_POST['id'])){
 	
 	$id = $_POST['id'];
 	$title = $_POST['title'];
@@ -28,7 +32,12 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	$color = $_POST['color'];
 	$amount = $_POST['amount'];
 
-	$sql = "UPDATE events SET  title = '$title', description = '$description', amount = '$amount', color = '$color' WHERE id = $id ";
+	$booking_type = $_POST['booking_type'];
+	$duration_type = $_POST['duration_type'];
+
+	$sql = "UPDATE events SET  title = '$title', description = '$description', amount = '$amount', color = '$color'
+	, duration_type = '$duration_type', booking_type='$booking_type'
+	 WHERE id = $id ";
 
 	$prepareQuery = $auth->prepare($sql);
 

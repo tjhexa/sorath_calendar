@@ -104,54 +104,31 @@ $events = $req->fetchAll();
 						</div>
 						<div class="modal-body">
 
-							<div class="form-group">
-								<label for="booking_type" class="col-sm-5 control-label">Booking Type</label>
-								<div class="col-sm-5" id="dv_booking_type">
-								
-									<div class="col-sm-5" id="bking_type">
-									<button class="btn btn-primary dropdown-toggle" type="button"
-										id="booking_type1" name="booking_type1" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false">
-										Select Option
-									</button>
-									<div id="ddp_booking_type" class="dropdown-menu" aria-labelledby="booking_type1">
-										<a class="dropdown-item" href="#">On Hold</a>
-										<a class="dropdown-item" href="#">Final Book</a>
-										<a class="dropdown-item" href="#">Other</a>
-										
-									</div>
-								</div>
 
-								<input type="hidden" class="col-sm-5 control-label" name="booking_type"
-										id="booking_type"></input>
+							<div class="form-group">
+								<label for="booking_type" class="col-sm-2 control-label">Booking Type</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="booking_type" id="booking_type">
+										<option value="on_hold">Oh Hold</option>
+										<option value="final_booking">Final Booking</option>
+										<option value="other">Other</option>										
+									</select>
 								</div>
 							</div>
 
-						
+
 
 							<div class="form-group">
-								<label for="booking_duration_type" class="col-sm-5 control-label">Duration Type</label>
-								<div class="col-sm-5" id="dv_duration_type">
-
-								<div class="col-sm-5" id="dratin_type">
-									<button class="btn btn-primary dropdown-toggle" type="button"
-										id="duration_type1" name="duration_type1" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false">
-										Select Option
-									</button>
-									<div id="ddp_duration_type" class="dropdown-menu" aria-labelledby="duration_type1">
-										<a class="dropdown-item" href="#">Half Day</a>
-										<a class="dropdown-item" href="#">Full Day</a>																				
-									</div>
-
-								
-								</div>
-								<input type="hidden" class="col-sm-5 control-label" name="duration_type"
-										id="duration_type"></input>
+								<label for="duration_type" class="col-sm-2 control-label">Duration Type</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="duration_type" id="duration_type">
+										<option value="half_day">Half Day</option>
+										<option value="full_day">Full Day</option>										
+									</select>
 								</div>
 							</div>
 
-						
+							
 
 							<div class="form-group">
 								<label for="title" class="col-sm-2 control-label">Title</label>
@@ -160,7 +137,7 @@ $events = $req->fetchAll();
 								</div>
 							</div>
 
-						
+
 
 							<div class="form-group">
 								<label for="description" class="col-sm-2 control-label">Description</label>
@@ -229,6 +206,31 @@ $events = $req->fetchAll();
 									aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="modal-body">
+
+
+
+						<div class="form-group">
+								<label for="booking_type" class="col-sm-2 control-label">Booking Type</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="booking_type" id="booking_type">
+										<option value="on_hold">Oh Hold</option>
+										<option value="final_booking">Final Booking</option>
+										<option value="other">Other</option>										
+									</select>
+								</div>
+							</div>
+
+
+
+							<div class="form-group">
+								<label for="duration_type" class="col-sm-2 control-label">Duration Type</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="duration_type" id="duration_type">
+										<option value="half_day">Half Day</option>
+										<option value="full_day">Full Day</option>										
+									</select>
+								</div>
+							</div>
 
 							<div class="form-group">
 								<label for="title" class="col-sm-2 control-label">Title</label>
@@ -317,31 +319,6 @@ $events = $req->fetchAll();
 	<script>
 
 
-$("#ddp_booking_type .dropdown-item").click(function () {
-				var selText = $(this).text();
-				console.log(selText);
-
-				$('#booking_type')[0].value = selText;
-
-				$(this).parents('#dv_booking_type').find('#booking_type1').html(selText + ' <span class="caret"></span>');
-				//$(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-			});
-
-
-$("#ddp_duration_type .dropdown-item").click(function () {
-				var selText = $(this).text();
-				console.log(selText);
-
-				$('#duration_type')[0].value = selText;
-
-				$(this).parents('#dv_duration_type').find('#duration_type1').html(selText + ' <span class="caret"></span>');
-				//$(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-			});
-
-		
-
-
-		
 		$(function () {
 
 			$('#calendar').fullCalendar({
@@ -393,8 +370,8 @@ $("#ddp_duration_type .dropdown-item").click(function () {
 						$('#ModalEdit #title').val(event.title);
 						$('#ModalEdit #description').val(event.description);
 						$('#ModalEdit #amount').val(event.amount);
-						$('#ModalEdit #selected_booking').val(event.booking_type);
-						$('#ModalEdit #selected_booking_duration').val(event.duration_type);
+						$('#ModalEdit #booking_type').val(event.booking_type);
+						$('#ModalEdit #duration_type').val(event.duration_type);
 						$('#ModalEdit #color').val(event.color);
 						$('#ModalEdit').modal('show');
 					});
@@ -410,6 +387,7 @@ $("#ddp_duration_type .dropdown-item").click(function () {
 
 				},
 				events: [
+					
 					<?php foreach ($events as $event):
 
 						$start = explode(" ", $event['start']);
@@ -424,51 +402,52 @@ $("#ddp_duration_type .dropdown-item").click(function () {
 						} else {
 							$end = $event['end'];
 						}
-						?>
-						{
-							id: '<?php echo $event['id']; ?>',
-							title: '<?php echo $event['title']; ?>',
-							description: '<?php echo $event['description']; ?>',
-							amount: '<?php echo $event['amount']; ?>',
-							booking_type: '<?php echo $event['booking_type']; ?>',
-							duration_type: '<?php echo $event['duration_type']; ?>',
-							start: '<?php echo $start; ?>',
-							end: '<?php echo $end; ?>',
-							color: '<?php echo $event['color']; ?>',
-						},
+					
+					?>
+		{
+			id: '<?php echo $event['id']; ?>',
+			title: '<?php echo $event['title']; ?>',
+			description: '<?php echo $event['description']; ?>',
+			amount: '<?php echo $event['amount']; ?>',
+			booking_type: '<?php echo $event['booking_type']; ?>',
+			duration_type: '<?php echo $event['duration_type']; ?>',
+			start: '<?php echo $start; ?>',
+			end: '<?php echo $end; ?>',
+			color: '<?php echo $event['color']; ?>',
+		},
 					<?php endforeach; ?>
 				]
 			});
 
-			function edit(event) {
-				start = event.start.format('YYYY-MM-DD HH:mm:ss');
-				if (event.end) {
-					end = event.end.format('YYYY-MM-DD HH:mm:ss');
-				} else {
-					end = start;
-				}
-
-				id = event.id;
-
-				Event = [];
-				Event[0] = id;
-				Event[1] = start;
-				Event[2] = end;
-
-				$.ajax({
-					url: './core/edit-date.php',
-					type: "POST",
-					data: { Event: Event },
-					success: function (rep) {
-						console.log(rep);
-						if (rep == 'OK') {
-							alert('Saved');
-						} else {
-							alert('Could not be saved. try again.');
-						}
-					}
-				});
+		function edit(event) {
+			start = event.start.format('YYYY-MM-DD HH:mm:ss');
+			if (event.end) {
+				end = event.end.format('YYYY-MM-DD HH:mm:ss');
+			} else {
+				end = start;
 			}
+
+			id = event.id;
+
+			Event = [];
+			Event[0] = id;
+			Event[1] = start;
+			Event[2] = end;
+
+			$.ajax({
+				url: './core/edit-date.php',
+				type: "POST",
+				data: { Event: Event },
+				success: function (rep) {
+					console.log(rep);
+					if (rep == 'OK') {
+						alert('Saved');
+					} else {
+						alert('Could not be saved. try again.');
+					}
+				}
+			});
+		}
 			
 		});
 
