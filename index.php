@@ -2,7 +2,7 @@
 require_once('./utils/auth.php');
 
 
-$sql = "SELECT id, title, description, start, end, color, amount, booking_type, duration_type, check_in_time, check_out_time,hold_for_days FROM events ";
+$sql = "SELECT id, title, description, color, start, end, amount, booking_type, duration_type, check_in_time, check_out_time, hold_for_days, party_name_full, party_contact_primary, party_reference_by, party_reference_contact, total_days_of_final_booking, sorath_contact_person, internal_notes, party_payment_data, party_token_data, date_added, date_modified, added_by, modified_by FROM events ";
 
 $req = $auth->prepare($sql);
 $req->execute();
@@ -30,6 +30,7 @@ $events = $req->fetchAll();
 
 	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- Custom CSS -->
 
@@ -103,7 +104,7 @@ $events = $req->fetchAll();
 		<!-- Modal -->
 		<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 			aria-hidden="true">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<form class="form-horizontal" method="POST" action="./core/add-event.php">
 
@@ -115,7 +116,296 @@ $events = $req->fetchAll();
 						<div class="modal-body">
 
 
-							<div class="form-group">
+							<div class="form-group row">
+								<label for="booking_type" class="col-3 col-form-label">Booking Type</label>
+								<div class="col-9">
+									<select id="booking_type" name="booking_type" class="custom-select"
+										aria-describedby="booking_typeHelpBlock" required="required">
+										<option value="on_hold">On Hold</option>
+										<option value="final_booking">Final Booking</option>
+										<option value="other">Other</option>
+									</select>
+									<span id="booking_typeHelpBlock" class="form-text text-muted">Please select Booking
+										Type</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="duration_type" class="col-3 col-form-label">Duration Type</label>
+								<div class="col-9">
+									<select id="duration_type" name="duration_type" class="custom-select"
+										aria-describedby="duration_typeHelpBlock" required="required">
+										<option value="half_day">Half Day</option>
+										<option value="full_day">Full Day</option>
+									</select>
+									<span id="duration_typeHelpBlock" class="form-text text-muted">Please select
+										Duration Type</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Check In Time</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_in_time" id="check_in_time_0" type="radio"
+											class="custom-control-input" value="0800"
+											aria-describedby="check_in_timeHelpBlock" required="required">
+										<label for="check_in_time_0" class="custom-control-label">08 AM</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_in_time" id="check_in_time_1" type="radio"
+											class="custom-control-input" value="1600"
+											aria-describedby="check_in_timeHelpBlock" required="required">
+										<label for="check_in_time_1" class="custom-control-label">04 PM</label>
+									</div>
+									<span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
+										In Time</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Check Out Time</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_out_time" id="check_out_time_0" type="radio"
+											class="custom-control-input" value="0600"
+											aria-describedby="check_out_timeHelpBlock" required="required">
+										<label for="check_out_time_0" class="custom-control-label">06 AM</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_out_time" id="check_out_time_1" type="radio"
+											class="custom-control-input" value="1400"
+											aria-describedby="check_out_timeHelpBlock" required="required">
+										<label for="check_out_time_1" class="custom-control-label">02 PM</label>
+									</div>
+									<span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
+										Out Time</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="hold_for_days" class="col-3 col-form-label">Hold For Days</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-calendar-minus-o"></i>
+											</div>
+										</div>
+										<input id="hold_for_days" name="hold_for_days"
+											placeholder="Please enter Hold For __ Days" type="number" step="any"
+											class="form-control" aria-describedby="hold_for_daysHelpBlock"
+											required="required">
+										<div class="input-group-append">
+											<div class="input-group-text">Days</div>
+										</div>
+									</div>
+									<span id="hold_for_daysHelpBlock" class="form-text text-muted">Please enter Hold
+										For Days</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_name_full" class="col-3 col-form-label">Party Name</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-user-circle"></i>
+											</div>
+										</div>
+										<input id="party_name_full" name="party_name_full"
+											placeholder="Please Enter Party Name" type="text" required="required"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_contact_primary" class="col-3 col-form-label">Party Mobile No.</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-phone"></i>
+											</div>
+										</div>
+										<input id="party_contact_primary" name="party_contact_primary"
+											placeholder="Please Enter Contact Number of Party" type="text"
+											class="form-control" required="required">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_reference_by" class="col-3 col-form-label">Reference By</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-sitemap"></i>
+											</div>
+										</div>
+										<input id="party_reference_by" name="party_reference_by"
+											placeholder="Please enter Reference Name" type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_reference_contact" class="col-3 col-form-label">Reference Mobile
+									No.</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-telegram"></i>
+											</div>
+										</div>
+										<input id="party_reference_contact" name="party_reference_contact"
+											placeholder="Please Enter Reference Contact Number" type="text"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="total_days_of_final_booking" class="col-3 col-form-label">Total Days of
+									Booking/Hold</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-calendar-check-o"></i>
+											</div>
+										</div>
+										<input id="total_days_of_final_booking" name="total_days_of_final_booking"
+											type="number" step="any" placeholder="Enter Total Days of Booking/Hold"
+											class="form-control">
+										<div class="input-group-append">
+											<div class="input-group-text">Days</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sorath_contact_person" class="col-3 col-form-label">Sorath Contact
+									Person</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-bolt"></i>
+											</div>
+										</div>
+										<input id="sorath_contact_person" name="sorath_contact_person"
+											placeholder="Please Enter Sorath Contact Person Details" type="text"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="internal_notes" class="col-3 col-form-label">Internal Notes</label>
+								<div class="col-9">
+									<textarea id="internal_notes" name="internal_notes" cols="40" rows="3"
+										class="form-control" aria-describedby="internal_notesHelpBlock"></textarea>
+									<span id="internal_notesHelpBlock" class="form-text text-muted">Write Down Internal
+										Notes (if any)</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Payment</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_payment_data" id="party_payment_data_0" type="radio"
+											class="custom-control-input" value="yes"
+											aria-describedby="party_payment_dataHelpBlock">
+										<label for="party_payment_data_0" class="custom-control-label">Yes</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_payment_data" id="party_payment_data_1" type="radio"
+											class="custom-control-input" value="no"
+											aria-describedby="party_payment_dataHelpBlock">
+										<label for="party_payment_data_1" class="custom-control-label">No</label>
+									</div>
+									<span id="party_payment_dataHelpBlock" class="form-text text-muted">Please Select
+										Payment Option</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Token</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_token_data" id="party_token_data_0" type="radio"
+											aria-describedby="party_token_dataHelpBlock" class="custom-control-input"
+											value="yes">
+										<label for="party_token_data_0" class="custom-control-label">Yes</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_token_data" id="party_token_data_1" type="radio"
+											aria-describedby="party_token_dataHelpBlock" class="custom-control-input"
+											value="no">
+										<label for="party_token_data_1" class="custom-control-label">No</label>
+									</div>
+									<span id="party_token_dataHelpBlock" class="form-text text-muted">Please Select
+										Token Option</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="title" class="col-3 col-form-label">Event Type</label>
+								<div class="col-9">
+									<select id="title" name="title" class="custom-select" required="required">
+										<option value="marriage">Marriage</option>
+										<option value="anniversary ">Anniversary</option>
+										<option value="engagement">Engagement</option>
+										<option value="janoi">Janoi</option>
+										<option value="birthday">Birthday</option>
+										<option value="meeting">Meeting</option>
+										<option value="other">Other</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="color" class="col-3 col-form-label">Event Color</label>
+								<div class="col-9">
+									<select id="color" name="color" class="custom-select" required="required">
+										<option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
+										<option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
+										<option style="color:#008000;" value="#008000">&#9724; Green</option>
+										<option style="color:#FFD700;" value="#FFD700">&#9724; Yellow</option>
+										<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
+										<option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
+										<option style="color:#000;" value="#000">&#9724; Black</option>
+									</select>
+									<span id="colorHelpBlock" class="form-text text-muted">This color will be shown on
+										Calendar events.</span>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<label for="start" class="col-3 col-form-label">Event Start Date</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-play"></i>
+											</div>
+										</div>
+										<input id="start" name="start" placeholder="Event Start Date" type="text"
+											class="form-control" required="required">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="end" class="col-3 col-form-label">Event End Date</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-stop"></i>
+											</div>
+										</div>
+										<input id="end" name="end" placeholder="Event End Date" type="text"
+											class="form-control" required="required">
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="form-group">
 								<label for="booking_type" class="col-sm-5 control-label">Booking Type</label>
 								<div class="col-sm-10">
 									<select class="form-control" name="booking_type" id="booking_type">
@@ -207,6 +497,9 @@ $events = $req->fetchAll();
 								</div>
 							</div>
 							<div class="container">
+
+
+
 								<div class="row">
 									<div class="form-group">
 										<label for="start" class="col-sm-12 control-label">Start date</label>
@@ -222,6 +515,16 @@ $events = $req->fetchAll();
 									</div>
 								</div>
 							</div>
+
+							 -->
+
+							<input type="hidden" type="text" for="date_added" value="2023-01-28 00:00:00"
+								id="date_added" name="date_added" />
+							<input type="hidden" type="text" for="added_by" value='jay' id="added_by" name="added_by" />
+							<input type="hidden" type="text" for="amount" value='0' id="amount" name="amount" />
+							<input type="hidden" type="text" for="description" value='NA' id="description"
+								name="description" />
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -235,7 +538,7 @@ $events = $req->fetchAll();
 		<!-- Modal -->
 		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 			aria-hidden="true">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<form class="form-horizontal" method="POST" action="./core/editEventTitle.php">
 						<div class="modal-header">
@@ -246,81 +549,251 @@ $events = $req->fetchAll();
 						<div class="modal-body">
 
 
-
-							<div class="form-group">
-								<label for="booking_type" class="col-sm-5 control-label">Booking Type</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="booking_type" id="booking_type">
-										<option value="on_hold">Oh Hold</option>
+							<div class="form-group row">
+								<label for="booking_type" class="col-3 col-form-label">Booking Type</label>
+								<div class="col-9">
+									<select id="booking_type" name="booking_type" class="custom-select"
+										aria-describedby="booking_typeHelpBlock" required="required">
+										<option value="on_hold">On Hold</option>
 										<option value="final_booking">Final Booking</option>
+										<option value="other">Other</option>
+									</select>
+									<span id="booking_typeHelpBlock" class="form-text text-muted">Please select Booking
+										Type</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="duration_type" class="col-3 col-form-label">Duration Type</label>
+								<div class="col-9">
+									<select id="duration_type" name="duration_type" class="custom-select"
+										aria-describedby="duration_typeHelpBlock" required="required">
+										<option value="half_day">Half Day</option>
+										<option value="full_day">Full Day</option>
+									</select>
+									<span id="duration_typeHelpBlock" class="form-text text-muted">Please select
+										Duration Type</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Check In Time</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_in_time" id="check_in_time_0" type="radio"
+											class="custom-control-input" value="0800"
+											aria-describedby="check_in_timeHelpBlock" required="required">
+										<label for="check_in_time_0" class="custom-control-label">08 AM</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_in_time" id="check_in_time_1" type="radio"
+											class="custom-control-input" value="1600"
+											aria-describedby="check_in_timeHelpBlock" required="required">
+										<label for="check_in_time_1" class="custom-control-label">04 PM</label>
+									</div>
+									<span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
+										In Time</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Check Out Time</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_out_time" id="check_out_time_0" type="radio"
+											class="custom-control-input" value="0600"
+											aria-describedby="check_out_timeHelpBlock" required="required">
+										<label for="check_out_time_0" class="custom-control-label">06 AM</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="check_out_time" id="check_out_time_1" type="radio"
+											class="custom-control-input" value="1400"
+											aria-describedby="check_out_timeHelpBlock" required="required">
+										<label for="check_out_time_1" class="custom-control-label">02 PM</label>
+									</div>
+									<span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
+										Out Time</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="hold_for_days" class="col-3 col-form-label">Hold For Days</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-calendar-minus-o"></i>
+											</div>
+										</div>
+										<input id="hold_for_days" name="hold_for_days"
+											placeholder="Please enter Hold For __ Days" type="number" step="any"
+											class="form-control" aria-describedby="hold_for_daysHelpBlock"
+											required="required">
+										<div class="input-group-append">
+											<div class="input-group-text">Days</div>
+										</div>
+									</div>
+									<span id="hold_for_daysHelpBlock" class="form-text text-muted">Please enter Hold
+										For Days</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_name_full" class="col-3 col-form-label">Party Name</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-user-circle"></i>
+											</div>
+										</div>
+										<input id="party_name_full" name="party_name_full"
+											placeholder="Please Enter Party Name" type="text" required="required"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_contact_primary" class="col-3 col-form-label">Party Mobile No.</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-phone"></i>
+											</div>
+										</div>
+										<input id="party_contact_primary" name="party_contact_primary"
+											placeholder="Please Enter Contact Number of Party" type="text"
+											class="form-control" required="required">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_reference_by" class="col-3 col-form-label">Reference By</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-sitemap"></i>
+											</div>
+										</div>
+										<input id="party_reference_by" name="party_reference_by"
+											placeholder="Please enter Reference Name" type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="party_reference_contact" class="col-3 col-form-label">Reference Mobile
+									No.</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-telegram"></i>
+											</div>
+										</div>
+										<input id="party_reference_contact" name="party_reference_contact"
+											placeholder="Please Enter Reference Contact Number" type="text"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="total_days_of_final_booking" class="col-3 col-form-label">Total Days of
+									Booking/Hold</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-calendar-check-o"></i>
+											</div>
+										</div>
+										<input id="total_days_of_final_booking" name="total_days_of_final_booking"
+											type="number" step="any" placeholder="Enter Total Days of Booking/Hold"
+											class="form-control">
+										<div class="input-group-append">
+											<div class="input-group-text">Days</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sorath_contact_person" class="col-3 col-form-label">Sorath Contact
+									Person</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-bolt"></i>
+											</div>
+										</div>
+										<input id="sorath_contact_person" name="sorath_contact_person"
+											placeholder="Please Enter Sorath Contact Person Details" type="text"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="internal_notes" class="col-3 col-form-label">Internal Notes</label>
+								<div class="col-9">
+									<textarea id="internal_notes" name="internal_notes" cols="40" rows="3"
+										class="form-control" aria-describedby="internal_notesHelpBlock"></textarea>
+									<span id="internal_notesHelpBlock" class="form-text text-muted">Write Down Internal
+										Notes (if any)</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Payment</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_payment_data" id="party_payment_data_0" type="radio"
+											class="custom-control-input" value="yes"
+											aria-describedby="party_payment_dataHelpBlock">
+										<label for="party_payment_data_0" class="custom-control-label">Yes</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_payment_data" id="party_payment_data_1" type="radio"
+											class="custom-control-input" value="no"
+											aria-describedby="party_payment_dataHelpBlock">
+										<label for="party_payment_data_1" class="custom-control-label">No</label>
+									</div>
+									<span id="party_payment_dataHelpBlock" class="form-text text-muted">Please Select
+										Payment Option</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3">Token</label>
+								<div class="col-9">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_token_data" id="party_token_data_0" type="radio"
+											aria-describedby="party_token_dataHelpBlock" class="custom-control-input"
+											value="yes">
+										<label for="party_token_data_0" class="custom-control-label">Yes</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input name="party_token_data" id="party_token_data_1" type="radio"
+											aria-describedby="party_token_dataHelpBlock" class="custom-control-input"
+											value="no">
+										<label for="party_token_data_1" class="custom-control-label">No</label>
+									</div>
+									<span id="party_token_dataHelpBlock" class="form-text text-muted">Please Select
+										Token Option</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="title" class="col-3 col-form-label">Event Type</label>
+								<div class="col-9">
+									<select id="title" name="title" class="custom-select" required="required">
+										<option value="marriage">Marriage</option>
+										<option value="anniversary ">Anniversary</option>
+										<option value="engagement">Engagement</option>
+										<option value="janoi">Janoi</option>
+										<option value="birthday">Birthday</option>
+										<option value="meeting">Meeting</option>
 										<option value="other">Other</option>
 									</select>
 								</div>
 							</div>
 
-
-
-							<div class="form-group">
-								<label for="duration_type" class="col-sm-5 control-label">Duration Type</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="duration_type" id="duration_type">
-										<option value="half_day">Half Day</option>
-										<option value="full_day">Full Day</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="check_in_time" class="col-sm-5 control-label">Check In Time</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="check_in_time" id="check_in_time">
-										<option value="0800">08 AM</option>
-										<option value="1600">04 PM</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="check_out_time" class="col-sm-5 control-label">Check Out Time</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="check_out_time" id="check_out_time">
-										<option value="0600">06 AM</option>
-										<option value="1400">02 PM</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="hold_for_days" class="col-sm-5 control-label">Hold For Days</label>
-								<div class="col-sm-10">
-									<input type="number" step="any" name="hold_for_days" class="form-control" 
-									id="hold_for_days" placeholder="Hold For Days">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="title" class="col-sm-2 control-label">Title</label>
-								<div class="col-sm-10">
-									<input type="text" name="title" class="form-control" id="title" placeholder="Title">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="description" class="col-sm-2 control-label">Description</label>
-								<div class="col-sm-10">
-									<input type="text" name="description" class="form-control" id="description"
-										placeholder="Description">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="amount" class="col-sm-2 control-label">Amount</label>
-								<div class="col-sm-10">
-									<input type="text" name="amount" class="form-control" id="amount"
-										placeholder="amount">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="color" class="col-sm-2 control-label">Color</label>
-								<div class="col-sm-10">
-									<select name="color" class="form-control" id="color">
+							<div class="form-group row">
+								<label for="color" class="col-3 col-form-label">Event Color</label>
+								<div class="col-9">
+									<select id="color" name="color" class="custom-select" required="required">
 										<option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
 										<option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
 										<option style="color:#008000;" value="#008000">&#9724; Green</option>
@@ -328,10 +801,43 @@ $events = $req->fetchAll();
 										<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
 										<option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
 										<option style="color:#000;" value="#000">&#9724; Black</option>
-
 									</select>
+									<span id="colorHelpBlock" class="form-text text-muted">This color will be shown on
+										Calendar events.</span>
 								</div>
 							</div>
+
+
+							<div class="form-group row">
+								<label for="start" class="col-3 col-form-label">Event Start Date</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-play"></i>
+											</div>
+										</div>
+										<input id="start" name="start" placeholder="Event Start Date" type="text"
+											class="form-control" required="required">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="end" class="col-3 col-form-label">Event End Date</label>
+								<div class="col-9">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-stop"></i>
+											</div>
+										</div>
+										<input id="end" name="end" placeholder="Event End Date" type="text"
+											class="form-control" required="required">
+									</div>
+								</div>
+							</div>
+
 							<div class="form-group">
 								<div class="col-sm-2">
 									<label onclick="toggleCheck('check1');" class="label-off" for="check1"
@@ -353,6 +859,12 @@ $events = $req->fetchAll();
 								}		  
 							</script>
 							<input type="hidden" name="id" class="form-control" id="id">
+							<input type="hidden" type="text" for="date_added" value="2023-01-28 00:00:00"
+								id="date_added" name="date_added" />
+							<input type="hidden" type="text" for="added_by" value='jay' id="added_by" name="added_by" />
+							<input type="hidden" type="text" for="amount" value='0' id="amount" name="amount" />
+							<input type="hidden" type="text" for="description" value='NA' id="description"
+								name="description" />
 
 
 						</div>
@@ -383,7 +895,7 @@ $events = $req->fetchAll();
 
 	<script>
 
-
+		//		$('#date_added').val(new Date());
 		$(function () {
 
 			$('#calendar').fullCalendar({
@@ -433,6 +945,10 @@ $events = $req->fetchAll();
 					element.bind('click', function () {
 						$('#ModalEdit #id').val(event.id);
 						$('#ModalEdit #title').val(event.title);
+
+						$('#ModalEdit #start').val(event.start);
+						$('#ModalEdit #end').val(event.end);
+
 						$('#ModalEdit #description').val(event.description);
 						$('#ModalEdit #amount').val(event.amount);
 						$('#ModalEdit #booking_type').val(event.booking_type);
@@ -442,6 +958,21 @@ $events = $req->fetchAll();
 						$('#ModalEdit #check_out_time').val(event.check_out_time);
 
 						$('#ModalEdit #hold_for_days').val(event.hold_for_days);
+
+						$('#ModalEdit #party_name_full').val(event.party_name_full);
+						$('#ModalEdit #party_contact_primary').val(event.party_contact_primary);
+						$('#ModalEdit #party_reference_by').val(event.party_reference_by);
+						$('#ModalEdit #party_reference_contact').val(event.party_reference_contact);
+						$('#ModalEdit #total_days_of_final_booking').val(event.total_days_of_final_booking);
+						$('#ModalEdit #sorath_contact_person').val(event.sorath_contact_person);
+						$('#ModalEdit #internal_notes').val(event.internal_notes);
+						$('#ModalEdit #party_payment_data').val(event.party_payment_data);
+						$('#ModalEdit #party_token_data').val(event.party_token_data);
+						$('#ModalEdit #date_added').val(event.date_added);
+						$('#ModalEdit #added_by').val(event.added_by);
+
+
+
 
 						$('#ModalEdit #color').val(event.color);
 						$('#ModalEdit').modal('show');
@@ -485,6 +1016,20 @@ $events = $req->fetchAll();
 							check_in_time: '<?php echo $event['check_in_time']; ?>',
 							check_out_time: '<?php echo $event['check_out_time']; ?>',
 							hold_for_days: '<?php echo $event['hold_for_days']; ?>',
+
+							party_name_full: '<?php echo $event['party_name_full']; ?>',
+							party_contact_primary: '<?php echo $event['party_contact_primary']; ?>',
+							party_reference_by: '<?php echo $event['party_reference_by']; ?>',
+							party_reference_contact: '<?php echo $event['party_reference_contact']; ?>',
+							total_days_of_final_booking: '<?php echo $event['total_days_of_final_booking']; ?>',
+							sorath_contact_person: '<?php echo $event['sorath_contact_person']; ?>',
+							internal_notes: '<?php echo $event['internal_notes']; ?>',
+							party_payment_data: '<?php echo $event['party_payment_data']; ?>',
+							party_token_data: '<?php echo $event['party_token_data']; ?>',
+							date_added: '<?php echo $event['date_added']; ?>',
+							added_by: '<?php echo $event['added_by']; ?>',
+
+
 							start: '<?php echo $start; ?>',
 							end: '<?php echo $end; ?>',
 							color: '<?php echo $event['color']; ?>',
