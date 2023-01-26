@@ -23,6 +23,8 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 } else if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['color'])
 && isset($_POST['duration_type'])
 && isset($_POST['booking_type'])
+&& isset($_POST['check_in_time'])
+&& isset($_POST['check_out_time'])
 && isset($_POST['amount']) 
 && isset($_POST['id'])){
 	
@@ -35,8 +37,12 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	$booking_type = $_POST['booking_type'];
 	$duration_type = $_POST['duration_type'];
 
+	$check_out_time = $_POST['check_out_time'];
+	$check_in_time = $_POST['check_in_time'];
+
+
 	$sql = "UPDATE events SET  title = '$title', description = '$description', amount = '$amount', color = '$color'
-	, duration_type = '$duration_type', booking_type='$booking_type'
+	, duration_type = '$duration_type', booking_type='$booking_type', check_in_time = '$check_in_time', check_out_time='$check_out_time'
 	 WHERE id = $id ";
 
 	$prepareQuery = $auth->prepare($sql);

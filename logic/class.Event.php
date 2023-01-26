@@ -14,9 +14,13 @@ class Event {
   var $booking_type;
 
   var $duration_type;
+
+  var $check_out_time;
+  var $check_in_time;
+
   
   function __construct( $__id, $__rid, $__eventType, $__title, $__description, $__start, $__end, $__color, $__amount
-  , $__booking_type, $__duration_type) { 
+  , $__booking_type, $__duration_type, $__check_in_time,$__check_out_time) { 
     $this->id = $__id;
     $this->rid = $__rid;
     $this->eventType = $__eventType;
@@ -28,6 +32,9 @@ class Event {
     $this->amount = $__amount;
     $this->booking_type = $__booking_type;
     $this->duration_type = $__duration_type;
+    $this->check_in_time = $__check_in_time;
+    $this->check_out_time = $__check_out_time;
+
   }
 
   public function setStartDateTime( $__start ) {

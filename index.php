@@ -2,7 +2,7 @@
 require_once('./utils/auth.php');
 
 
-$sql = "SELECT id, title, description, start, end, color, amount, booking_type, duration_type FROM events ";
+$sql = "SELECT id, title, description, start, end, color, amount, booking_type, duration_type, check_in_time, check_out_time FROM events ";
 
 $req = $auth->prepare($sql);
 $req->execute();
@@ -64,6 +64,16 @@ $events = $req->fetchAll();
 			/* bootstrap default styles make it black. undo */
 			background-color: #0065A6;
 		}
+
+		/* Important part */
+		.modal-dialog {
+			overflow-y: initial !important
+		}
+
+		.modal-body {
+			height: 80vh;
+			overflow-y: auto;
+		}
 	</style>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -111,7 +121,7 @@ $events = $req->fetchAll();
 									<select class="form-control" name="booking_type" id="booking_type">
 										<option value="on_hold">Oh Hold</option>
 										<option value="final_booking">Final Booking</option>
-										<option value="other">Other</option>										
+										<option value="other">Other</option>
 									</select>
 								</div>
 							</div>
@@ -123,12 +133,31 @@ $events = $req->fetchAll();
 								<div class="col-sm-5">
 									<select class="form-control" name="duration_type" id="duration_type">
 										<option value="half_day">Half Day</option>
-										<option value="full_day">Full Day</option>										
+										<option value="full_day">Full Day</option>
 									</select>
 								</div>
 							</div>
 
-							
+
+							<div class="form-group">
+								<label for="check_in_time" class="col-sm-2 control-label">Check In Time</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="check_in_time" id="check_in_time">
+										<option value="0800">08 AM</option>
+										<option value="1600">04 PM</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="check_out_time" class="col-sm-2 control-label">Check Out Time</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="check_out_time" id="check_out_time">
+										<option value="0600">06 AM</option>
+										<option value="1400">02 PM</option>
+									</select>
+								</div>
+							</div>
+
 
 							<div class="form-group">
 								<label for="title" class="col-sm-2 control-label">Title</label>
@@ -209,13 +238,13 @@ $events = $req->fetchAll();
 
 
 
-						<div class="form-group">
+							<div class="form-group">
 								<label for="booking_type" class="col-sm-2 control-label">Booking Type</label>
 								<div class="col-sm-5">
 									<select class="form-control" name="booking_type" id="booking_type">
 										<option value="on_hold">Oh Hold</option>
 										<option value="final_booking">Final Booking</option>
-										<option value="other">Other</option>										
+										<option value="other">Other</option>
 									</select>
 								</div>
 							</div>
@@ -227,10 +256,30 @@ $events = $req->fetchAll();
 								<div class="col-sm-5">
 									<select class="form-control" name="duration_type" id="duration_type">
 										<option value="half_day">Half Day</option>
-										<option value="full_day">Full Day</option>										
+										<option value="full_day">Full Day</option>
 									</select>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label for="check_in_time" class="col-sm-2 control-label">Check In Time</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="check_in_time" id="check_in_time">
+										<option value="0800">08 AM</option>
+										<option value="1600">04 PM</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="check_out_time" class="col-sm-2 control-label">Check Out Time</label>
+								<div class="col-sm-5">
+									<select class="form-control" name="check_out_time" id="check_out_time">
+										<option value="0600">06 AM</option>
+										<option value="1400">02 PM</option>
+									</select>
+								</div>
+							</div>
+
 
 							<div class="form-group">
 								<label for="title" class="col-sm-2 control-label">Title</label>
@@ -323,7 +372,7 @@ $events = $req->fetchAll();
 
 			$('#calendar').fullCalendar({
 				header: {
-					left: 'prev,next,today',
+					left: 'prev,today,next',
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay,listWeek'
 				},
@@ -331,12 +380,12 @@ $events = $req->fetchAll();
 				businessHours: {
 					dow: [1, 2, 3, 4, 5],
 
-					start: '8:00',
-					end: '17:00',
+					start: '00:00',
+					end: '24:00',
 				},
 				nowIndicator: true,
 				now: new Date(), //'2020-12-11T11:15:00', //remove - only for demo
-				scrollTime: '08:00:00',
+				scrollTime: '06:00:00',
 				defaultDate: new Date(), //'2020-12-07', // Use this line to use the current date: new Date(),
 				editable: true,
 				navLinks: true,
@@ -372,6 +421,10 @@ $events = $req->fetchAll();
 						$('#ModalEdit #amount').val(event.amount);
 						$('#ModalEdit #booking_type').val(event.booking_type);
 						$('#ModalEdit #duration_type').val(event.duration_type);
+
+						$('#ModalEdit #check_in_time').val(event.check_in_time);
+						$('#ModalEdit #check_out_time').val(event.check_out_time);
+
 						$('#ModalEdit #color').val(event.color);
 						$('#ModalEdit').modal('show');
 					});
@@ -387,7 +440,7 @@ $events = $req->fetchAll();
 
 				},
 				events: [
-					
+
 					<?php foreach ($events as $event):
 
 						$start = explode(" ", $event['start']);
@@ -402,53 +455,55 @@ $events = $req->fetchAll();
 						} else {
 							$end = $event['end'];
 						}
-					
-					?>
-		{
-			id: '<?php echo $event['id']; ?>',
-			title: '<?php echo $event['title']; ?>',
-			description: '<?php echo $event['description']; ?>',
-			amount: '<?php echo $event['amount']; ?>',
-			booking_type: '<?php echo $event['booking_type']; ?>',
-			duration_type: '<?php echo $event['duration_type']; ?>',
-			start: '<?php echo $start; ?>',
-			end: '<?php echo $end; ?>',
-			color: '<?php echo $event['color']; ?>',
-		},
+
+						?>
+						{
+							id: '<?php echo $event['id']; ?>',
+							title: '<?php echo $event['title']; ?>',
+							description: '<?php echo $event['description']; ?>',
+							amount: '<?php echo $event['amount']; ?>',
+							booking_type: '<?php echo $event['booking_type']; ?>',
+							duration_type: '<?php echo $event['duration_type']; ?>',
+							check_in_time: '<?php echo $event['check_in_time']; ?>',
+							check_out_time: '<?php echo $event['check_out_time']; ?>',
+							start: '<?php echo $start; ?>',
+							end: '<?php echo $end; ?>',
+							color: '<?php echo $event['color']; ?>',
+						},
 					<?php endforeach; ?>
 				]
 			});
 
-		function edit(event) {
-			start = event.start.format('YYYY-MM-DD HH:mm:ss');
-			if (event.end) {
-				end = event.end.format('YYYY-MM-DD HH:mm:ss');
-			} else {
-				end = start;
+			function edit(event) {
+				start = event.start.format('YYYY-MM-DD HH:mm:ss');
+				if (event.end) {
+					end = event.end.format('YYYY-MM-DD HH:mm:ss');
+				} else {
+					end = start;
+				}
+
+				id = event.id;
+
+				Event = [];
+				Event[0] = id;
+				Event[1] = start;
+				Event[2] = end;
+
+				$.ajax({
+					url: './core/edit-date.php',
+					type: "POST",
+					data: { Event: Event },
+					success: function (rep) {
+						console.log(rep);
+						if (rep == 'OK') {
+							alert('Saved');
+						} else {
+							alert('Could not be saved. try again.');
+						}
+					}
+				});
 			}
 
-			id = event.id;
-
-			Event = [];
-			Event[0] = id;
-			Event[1] = start;
-			Event[2] = end;
-
-			$.ajax({
-				url: './core/edit-date.php',
-				type: "POST",
-				data: { Event: Event },
-				success: function (rep) {
-					console.log(rep);
-					if (rep == 'OK') {
-						alert('Saved');
-					} else {
-						alert('Could not be saved. try again.');
-					}
-				}
-			});
-		}
-			
 		});
 
 	</script>
