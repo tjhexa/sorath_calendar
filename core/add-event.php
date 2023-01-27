@@ -38,7 +38,7 @@ if (isset($_POST['title'])) {
 	$sql = "INSERT INTO events(title, description, start, end, color, 
 	amount,booking_type,duration_type, check_in_time,check_out_time,hold_for_days, party_name_full, 
 	party_contact_primary, party_reference_by, party_reference_contact, total_days_of_final_booking, 
-	sorath_contact_person, internal_notes, party_payment_data, party_token_data, date_added, added_by,date_modified,modified_by) 
+	sorath_contact_person, internal_notes, party_payment_data, party_token_data, date_added, added_by) 
 	values ('$title', '$description',
 	 '$start', '$end', '$color', '$amount', '$booking_type',
 	 '$duration_type', '$check_in_time','$check_out_time','$hold_for_days',
@@ -52,7 +52,7 @@ if (isset($_POST['title'])) {
 	 '$party_payment_data',
 	 '$party_token_data',
 	 '$date_added',
-	 '$added_by','','')";
+	 '$added_by')";
 	echo $sql;
 
 	$prepareQuery = $auth->prepare($sql);

@@ -36,6 +36,7 @@ if (isset($_POST['delete']) && isset($_POST['id'])) {
 	&& isset($_POST['internal_notes'])
 	&& isset($_POST['party_payment_data'])
 	&& isset($_POST['party_token_data'])
+	&& isset($_POST['date_modified'])
 	&& isset($_POST['amount'])
 	&& isset($_POST['id'])
 ) {
@@ -64,6 +65,8 @@ if (isset($_POST['delete']) && isset($_POST['id'])) {
 	$party_payment_data = $_POST['party_payment_data'];
 	$party_token_data = $_POST['party_token_data'];
 
+	$date_modified = $_POST['date_modified'];
+	$modified_by = $_POST['modified_by'];
 
 	$sql = "UPDATE events SET  title = '$title', description = '$description', amount = '$amount', color = '$color'
 	, duration_type = '$duration_type', booking_type='$booking_type', check_in_time = '$check_in_time', check_out_time='$check_out_time',
@@ -78,7 +81,8 @@ if (isset($_POST['delete']) && isset($_POST['id'])) {
 ,internal_notes				='$internal_notes'
 ,party_payment_data			='$party_payment_data'
 ,party_token_data			='$party_token_data'
-
+,date_modified 				= '$date_modified'
+,modified_by 				= '$modified_by'
 	 WHERE id = $id ";
 
 	$prepareQuery = $auth->prepare($sql);

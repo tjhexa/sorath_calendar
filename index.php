@@ -518,8 +518,8 @@ $events = $req->fetchAll();
 
 							 -->
 
-							<input type="hidden" type="text" for="date_added" value="2023-01-28 00:00:00"
-								id="date_added" name="date_added" />
+							<input type="hidden" type="text" for="date_added" value="getdateinformat();" id="date_added"
+								name="date_added" />
 							<input type="hidden" type="text" for="added_by" value='jay' id="added_by" name="added_by" />
 							<input type="hidden" type="text" for="amount" value='0' id="amount" name="amount" />
 							<input type="hidden" type="text" for="description" value='NA' id="description"
@@ -861,6 +861,10 @@ $events = $req->fetchAll();
 							<input type="hidden" name="id" class="form-control" id="id">
 							<input type="hidden" type="text" for="date_added" value="2023-01-28 00:00:00"
 								id="date_added" name="date_added" />
+							<input type="hidden" type="text" for="date_modified" value="2023-01-28 00:00:00"
+								id="date_modified" name="date_modified" />
+							<input type="hidden" type="text" for="modified_by" value="tj"
+								id="modified_by" name="modified_by" />
 							<input type="hidden" type="text" for="added_by" value='jay' id="added_by" name="added_by" />
 							<input type="hidden" type="text" for="amount" value='0' id="amount" name="amount" />
 							<input type="hidden" type="text" for="description" value='NA' id="description"
@@ -895,9 +899,21 @@ $events = $req->fetchAll();
 
 	<script>
 
+		function getdateinformat() {
+			const dt = new Date();
+			const padL = (nr, len = 2, chr = `0`) => `${nr}`.padStart(2, chr);
+
+			return `${dt.getFullYear()}-${padL(dt.getMonth() + 1)}-${padL(dt.getDate())} ${padL(dt.getHours())}:${padL(dt.getMinutes())}:${padL(dt.getSeconds())}`;
+		}
+		$("#ModalAdd #date_added").val(getdateinformat());
+		$("#ModalEdit #date_added").val(getdateinformat());
+		$("#ModalEdit #date_modified").val(getdateinformat());
 		//		$('#date_added').val(new Date());
 		$(function () {
 
+			$("#ModalAdd #date_added").val(getdateinformat());
+			$("#ModalEdit #date_added").val(getdateinformat());
+			$("#ModalEdit #date_modified").val(getdateinformat());
 			$('#calendar').fullCalendar({
 				header: {
 					left: 'prev,today,next',
@@ -966,9 +982,9 @@ $events = $req->fetchAll();
 						//$('#ModalEdit #check_in_time').val(event.check_in_time);
 
 						if (event.check_out_time == "0600") {
-							$('#ModalEdit #check_out_time_0').click(); 
+							$('#ModalEdit #check_out_time_0').click();
 						} else {
-							$('#ModalEdit #check_out_time_1').click(); 
+							$('#ModalEdit #check_out_time_1').click();
 						}
 
 						//$('#ModalEdit #check_out_time').val(event.check_out_time);
@@ -985,23 +1001,20 @@ $events = $req->fetchAll();
 						//$('#ModalEdit #party_payment_data').val(event.party_payment_data);
 
 						if (event.party_payment_data == "yes") {
-							$('#ModalEdit #party_payment_data_0').click(); 
+							$('#ModalEdit #party_payment_data_0').click();
 						} else {
-							$('#ModalEdit #party_payment_data_1').click(); 
+							$('#ModalEdit #party_payment_data_1').click();
 						}
 
 						if (event.party_token_data == "yes") {
-							$('#ModalEdit #party_token_data_0').click(); 
+							$('#ModalEdit #party_token_data_0').click();
 						} else {
-							$('#ModalEdit #party_token_data_1').click(); 
+							$('#ModalEdit #party_token_data_1').click();
 						}
 
 						//$('#ModalEdit #party_token_data').val(event.party_token_data);
 						$('#ModalEdit #date_added').val(event.date_added);
 						$('#ModalEdit #added_by').val(event.added_by);
-
-
-
 
 						$('#ModalEdit #color').val(event.color);
 						$('#ModalEdit').modal('show');
