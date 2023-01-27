@@ -9,6 +9,7 @@ duration_type
 check_in_time
 check_out_time
 hold_after_days
+
 party_name_full
 party_contact_primary
 party_reference_by
