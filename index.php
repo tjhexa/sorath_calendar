@@ -156,8 +156,8 @@ $events = $req->fetchAll();
 											aria-describedby="check_in_timeHelpBlock" required="required">
 										<label for="check_in_time_1" class="custom-control-label">04 PM</label>
 									</div>
-									<span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
-										In Time</span>
+									<!-- <span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
+										In Time</span> -->
 								</div>
 							</div>
 							<div class="form-group row">
@@ -175,8 +175,8 @@ $events = $req->fetchAll();
 											aria-describedby="check_out_timeHelpBlock" required="required">
 										<label for="check_out_time_1" class="custom-control-label">02 PM</label>
 									</div>
-									<span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
-										Out Time</span>
+									<!-- <span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
+										Out Time</span> -->
 								</div>
 							</div>
 							<div class="form-group row">
@@ -577,39 +577,39 @@ $events = $req->fetchAll();
 							<div class="form-group row">
 								<label class="col-3">Check In Time</label>
 								<div class="col-9">
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="check_in_time" id="check_in_time_0" type="radio"
-											class="custom-control-input" value="0800"
+											class="form-check-input" value="0800"
 											aria-describedby="check_in_timeHelpBlock" required="required">
-										<label for="check_in_time_0" class="custom-control-label">08 AM</label>
+										<label for="check_in_time_0" class="form-check-label">08 AM</label>
 									</div>
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="check_in_time" id="check_in_time_1" type="radio"
-											class="custom-control-input" value="1600"
+											class="form-check-input" value="1600"
 											aria-describedby="check_in_timeHelpBlock" required="required">
-										<label for="check_in_time_1" class="custom-control-label">04 PM</label>
+										<label for="check_in_time_1" class="form-check-label">04 PM</label>
 									</div>
-									<span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
-										In Time</span>
+									<!-- <span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
+										In Time</span> -->
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-3">Check Out Time</label>
 								<div class="col-9">
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="check_out_time" id="check_out_time_0" type="radio"
-											class="custom-control-input" value="0600"
+											class="form-check-input" value="0600"
 											aria-describedby="check_out_timeHelpBlock" required="required">
-										<label for="check_out_time_0" class="custom-control-label">06 AM</label>
+										<label for="check_out_time_0" class="form-check-label">06 AM</label>
 									</div>
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="check_out_time" id="check_out_time_1" type="radio"
-											class="custom-control-input" value="1400"
+											class="form-check-input" value="1400"
 											aria-describedby="check_out_timeHelpBlock" required="required">
-										<label for="check_out_time_1" class="custom-control-label">02 PM</label>
+										<label for="check_out_time_1" class="form-check-label">02 PM</label>
 									</div>
-									<span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
-										Out Time</span>
+									<!-- <span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
+										Out Time</span> -->
 								</div>
 							</div>
 							<div class="form-group row">
@@ -740,17 +740,17 @@ $events = $req->fetchAll();
 							<div class="form-group row">
 								<label class="col-3">Payment</label>
 								<div class="col-9">
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="party_payment_data" id="party_payment_data_0" type="radio"
-											class="custom-control-input" value="yes"
+											class="form-check-input" value="yes"
 											aria-describedby="party_payment_dataHelpBlock">
-										<label for="party_payment_data_0" class="custom-control-label">Yes</label>
+										<label for="party_payment_data_0" class="form-check-label">Yes</label>
 									</div>
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="party_payment_data" id="party_payment_data_1" type="radio"
-											class="custom-control-input" value="no"
+											class="form-check-input" value="no"
 											aria-describedby="party_payment_dataHelpBlock">
-										<label for="party_payment_data_1" class="custom-control-label">No</label>
+										<label for="party_payment_data_1" class="form-check-label">No</label>
 									</div>
 									<span id="party_payment_dataHelpBlock" class="form-text text-muted">Please Select
 										Payment Option</span>
@@ -759,17 +759,17 @@ $events = $req->fetchAll();
 							<div class="form-group row">
 								<label class="col-3">Token</label>
 								<div class="col-9">
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="party_token_data" id="party_token_data_0" type="radio"
-											aria-describedby="party_token_dataHelpBlock" class="custom-control-input"
+											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
 											value="yes">
-										<label for="party_token_data_0" class="custom-control-label">Yes</label>
+										<label for="party_token_data_0" class="form-check-label">Yes</label>
 									</div>
-									<div class="custom-control custom-radio custom-control-inline">
+									<div class="form-check form-check-inline">
 										<input name="party_token_data" id="party_token_data_1" type="radio"
-											aria-describedby="party_token_dataHelpBlock" class="custom-control-input"
+											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
 											value="no">
-										<label for="party_token_data_1" class="custom-control-label">No</label>
+										<label for="party_token_data_1" class="form-check-label">No</label>
 									</div>
 									<span id="party_token_dataHelpBlock" class="form-text text-muted">Please Select
 										Token Option</span>
@@ -932,7 +932,7 @@ $events = $req->fetchAll();
 					request.onload = function () {
 						$el.popover({
 							title: eventObj.title,
-							content: eventObj.description,
+							content: eventObj.party_name_full,
 							trigger: 'hover',
 							placement: 'top',
 							container: 'body'
@@ -954,8 +954,24 @@ $events = $req->fetchAll();
 						$('#ModalEdit #booking_type').val(event.booking_type);
 						$('#ModalEdit #duration_type').val(event.duration_type);
 
-						$('#ModalEdit #check_in_time').val(event.check_in_time);
-						$('#ModalEdit #check_out_time').val(event.check_out_time);
+						if (event.check_in_time == "0800") {
+							//$('#ModalEdit #check_in_time_0').click(); 
+							$("#ModalEdit #check_in_time_0").attr("checked", true);
+							$("#ModalEdit #check_in_time_1").attr("checked", false);
+						} else {
+							$("#ModalEdit #check_in_time_1").attr("checked", true);
+							$("#ModalEdit #check_in_time_0").attr("checked", false);
+						}
+
+						//$('#ModalEdit #check_in_time').val(event.check_in_time);
+
+						if (event.check_out_time == "0600") {
+							$('#ModalEdit #check_out_time_0').click(); 
+						} else {
+							$('#ModalEdit #check_out_time_1').click(); 
+						}
+
+						//$('#ModalEdit #check_out_time').val(event.check_out_time);
 
 						$('#ModalEdit #hold_for_days').val(event.hold_for_days);
 
@@ -966,8 +982,21 @@ $events = $req->fetchAll();
 						$('#ModalEdit #total_days_of_final_booking').val(event.total_days_of_final_booking);
 						$('#ModalEdit #sorath_contact_person').val(event.sorath_contact_person);
 						$('#ModalEdit #internal_notes').val(event.internal_notes);
-						$('#ModalEdit #party_payment_data').val(event.party_payment_data);
-						$('#ModalEdit #party_token_data').val(event.party_token_data);
+						//$('#ModalEdit #party_payment_data').val(event.party_payment_data);
+
+						if (event.party_payment_data == "yes") {
+							$('#ModalEdit #party_payment_data_0').click(); 
+						} else {
+							$('#ModalEdit #party_payment_data_1').click(); 
+						}
+
+						if (event.party_token_data == "yes") {
+							$('#ModalEdit #party_token_data_0').click(); 
+						} else {
+							$('#ModalEdit #party_token_data_1').click(); 
+						}
+
+						//$('#ModalEdit #party_token_data').val(event.party_token_data);
 						$('#ModalEdit #date_added').val(event.date_added);
 						$('#ModalEdit #added_by').val(event.added_by);
 
