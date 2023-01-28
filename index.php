@@ -578,16 +578,20 @@ $events = $req->fetchAll();
 								<label class="col-3">Check In Time</label>
 								<div class="col-9">
 									<div class="form-check form-check-inline">
-										<input name="check_in_time" id="check_in_time_0" type="radio"
+										<!-- <input name="check_in_time" id="check_in_time_0" type="radio"
 											class="form-check-input" value="0800"
-											aria-describedby="check_in_timeHelpBlock" required="required">
-										<label for="check_in_time_0" class="form-check-label">08 AM</label>
+											aria-describedby="check_in_timeHelpBlock" required="required"> -->
+										<label ><input name="check_in_time" id="check_in_time_0" type="radio"
+											class="form-check-input" value="0800"
+											aria-describedby="check_in_timeHelpBlock" required="required">08 AM</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input name="check_in_time" id="check_in_time_1" type="radio"
+										<!-- <input name="check_in_time" id="check_in_time_1" type="radio"
 											class="form-check-input" value="1600"
-											aria-describedby="check_in_timeHelpBlock" required="required">
-										<label for="check_in_time_1" class="form-check-label">04 PM</label>
+											aria-describedby="check_in_timeHelpBlock" required="required"> -->
+										<label ><input name="check_in_time" id="check_in_time_1" type="radio"
+											class="form-check-input" value="1600"
+											aria-describedby="check_in_timeHelpBlock" required="required">04 PM</label>
 									</div>
 									<!-- <span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
 										In Time</span> -->
@@ -597,16 +601,20 @@ $events = $req->fetchAll();
 								<label class="col-3">Check Out Time</label>
 								<div class="col-9">
 									<div class="form-check form-check-inline">
-										<input name="check_out_time" id="check_out_time_0" type="radio"
+										<!-- <input name="check_out_time" id="check_out_time_0" type="radio"
 											class="form-check-input" value="0600"
-											aria-describedby="check_out_timeHelpBlock" required="required">
-										<label for="check_out_time_0" class="form-check-label">06 AM</label>
+											aria-describedby="check_out_timeHelpBlock" required="required"> -->
+										<label ><input name="check_out_time" id="check_out_time_0" type="radio"
+											class="form-check-input" value="0600"
+											aria-describedby="check_out_timeHelpBlock" required="required">06 AM</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input name="check_out_time" id="check_out_time_1" type="radio"
+										<!-- <input name="check_out_time" id="check_out_time_1" type="radio"
 											class="form-check-input" value="1400"
-											aria-describedby="check_out_timeHelpBlock" required="required">
-										<label for="check_out_time_1" class="form-check-label">02 PM</label>
+											aria-describedby="check_out_timeHelpBlock" required="required"> -->
+										<label ><input name="check_out_time" id="check_out_time_1" type="radio"
+											class="form-check-input" value="1400"
+											aria-describedby="check_out_timeHelpBlock" required="required">02 PM</label>
 									</div>
 									<!-- <span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
 										Out Time</span> -->
@@ -741,16 +749,20 @@ $events = $req->fetchAll();
 								<label class="col-3">Payment</label>
 								<div class="col-9">
 									<div class="form-check form-check-inline">
-										<input name="party_payment_data" id="party_payment_data_0" type="radio"
+										<!-- <input name="party_payment_data" id="party_payment_data_0" type="radio"
 											class="form-check-input" value="yes"
-											aria-describedby="party_payment_dataHelpBlock">
-										<label for="party_payment_data_0" class="form-check-label">Yes</label>
+											aria-describedby="party_payment_dataHelpBlock"> -->
+										<label ><input name="party_payment_data" id="party_payment_data_0" type="radio"
+											class="form-check-input" value="yes"
+											aria-describedby="party_payment_dataHelpBlock">Yes</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input name="party_payment_data" id="party_payment_data_1" type="radio"
+										<!-- <input name="party_payment_data" id="party_payment_data_1" type="radio"
 											class="form-check-input" value="no"
-											aria-describedby="party_payment_dataHelpBlock">
-										<label for="party_payment_data_1" class="form-check-label">No</label>
+											aria-describedby="party_payment_dataHelpBlock"> -->
+										<label ><input name="party_payment_data" id="party_payment_data_1" type="radio"
+											class="form-check-input" value="no"
+											aria-describedby="party_payment_dataHelpBlock">No</label>
 									</div>
 									<span id="party_payment_dataHelpBlock" class="form-text text-muted">Please Select
 										Payment Option</span>
@@ -760,16 +772,20 @@ $events = $req->fetchAll();
 								<label class="col-3">Token</label>
 								<div class="col-9">
 									<div class="form-check form-check-inline">
-										<input name="party_token_data" id="party_token_data_0" type="radio"
+										<!-- <input name="party_token_data" id="party_token_data_0" type="radio"
 											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
-											value="yes">
-										<label for="party_token_data_0" class="form-check-label">Yes</label>
+											value="yes"> -->
+										<label ><input name="party_token_data" id="party_token_data_0" type="radio"
+											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
+											value="yes">Yes</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input name="party_token_data" id="party_token_data_1" type="radio"
+										<!-- <input name="party_token_data" id="party_token_data_1" type="radio"
 											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
-											value="no">
-										<label for="party_token_data_1" class="form-check-label">No</label>
+											value="no"> -->
+										<label ><input name="party_token_data" id="party_token_data_1" type="radio"
+											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
+											value="no">No</label>
 									</div>
 									<span id="party_token_dataHelpBlock" class="form-text text-muted">Please Select
 										Token Option</span>
@@ -972,11 +988,11 @@ $events = $req->fetchAll();
 
 						if (event.check_in_time == "0800") {
 							//$('#ModalEdit #check_in_time_0').click(); 
-							$("#ModalEdit #check_in_time_0").attr("checked", true);
-							$("#ModalEdit #check_in_time_1").attr("checked", false);
+							$("#ModalEdit #check_in_time_0").click();
+							//$("#ModalEdit #check_in_time_1").attr("checked", false);
 						} else {
-							$("#ModalEdit #check_in_time_1").attr("checked", true);
-							$("#ModalEdit #check_in_time_0").attr("checked", false);
+							$("#ModalEdit #check_in_time_1").click();
+							//$("#ModalEdit #check_in_time_0").attr("checked", false);
 						}
 
 						//$('#ModalEdit #check_in_time').val(event.check_in_time);
