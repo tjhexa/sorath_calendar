@@ -1,6 +1,9 @@
 <?php
 require_once('./utils/auth.php');
 
+include "database.php";
+include "restricted.php";
+
 
 $sql = "SELECT id, title, description, color, start, end, amount, booking_type, duration_type, check_in_time, check_out_time, hold_for_days, party_name_full, party_contact_primary, party_reference_by, party_reference_contact, total_days_of_final_booking, sorath_contact_person, internal_notes, party_payment_data, party_token_data, date_added, date_modified, added_by, modified_by FROM events ";
 
