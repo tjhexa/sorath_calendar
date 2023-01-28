@@ -7,9 +7,14 @@
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="css/my-login.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/my-login.css">
+    
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -51,12 +56,23 @@
                 echo ("Error message: %s " + mysqli_error($link));
             } else {
                 ?>
-                <div class="container p-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">Success!</div>
-                        <div class="panel-body">Your registration was successful. Please go to Login Page.</div>
-                    </div>
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>Registration Successfull.</p>
+                    <hr>
+                    <p class="mb-0">Please go to Login page to continue.</p>
                 </div>
+
+                <script type='text/javascript'>
+                    $(document).ready(function () {
+                        $('#myModal').modal('show');
+                    });
+                </script>
+
+
+
+
+
                 <?php
             }
 
@@ -70,7 +86,23 @@
     }
 
     ?>
-
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">                    
+                    <h4 class="modal-title">Registration Successful.</h4>
+                    <button type="button" class="close" data-dismiss="modal" onclick="javascript:window.location.href='login.php';" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>New user registration successful. Please click on Login to goto Login Screen.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="javascript:window.location.href='login.php';">Login</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-md-center h-100">

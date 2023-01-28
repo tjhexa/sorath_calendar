@@ -49,20 +49,43 @@ if (isset($_POST['op'])) {
 <head>
     <title>Login</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/my-login.css">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    
+
     <style>
-       
+      
+
+      
+      
+
+      
     </style>
 </head>
 
 <body class="my-login-page">
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title">Login In Failed.</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Invalid Email/Password. Please try again.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-info">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-md-center h-100">
@@ -73,10 +96,15 @@ if (isset($_POST['op'])) {
                     <?php
                     if (!empty($failed) && $failed == 1) {
                         ?>
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">Login error</div>
-                            <div class="panel-body">Wrong login or password</div>
-                        </div>
+                        <!-- <div class="panel panel-danger">
+                                    <div class="panel-heading">Login error</div>
+                                    <div class="panel-body">Wrong login or password</div>
+                                </div> -->
+                        <script type='text/javascript'>
+                            $(document).ready(function () {
+                                $('#myModal').modal('show');
+                            });
+                        </script>
 
                         <?php
                     }
