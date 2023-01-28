@@ -6,18 +6,16 @@
     <title>Registration</title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
-    <!-- <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'> -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/my-login.css">
-    <!-- jQuery library -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+
     <style>
-       
+
     </style>
 </head>
 
@@ -45,13 +43,13 @@
                   VALUES ('$name','$email','$phone',PASSWORD('$pass'))";
 
             if (mysqli_connect_errno()) {
-                echo ("Connect failed: %s "+ mysqli_connect_error());
+                echo ("Connect failed: %s " + mysqli_connect_error());
                 exit();
             }
 
             if (!mysqli_query($link, $sql)) {
-                echo ("Error message: %s "+ mysqli_error($link));
-            }else{
+                echo ("Error message: %s " + mysqli_error($link));
+            } else {
                 ?>
                 <div class="container p-3">
                     <div class="panel panel-primary">
@@ -67,7 +65,7 @@
 
 
 
-    
+
         }
     }
 
@@ -80,13 +78,13 @@
                     <div class="brand">
                         <img src="img/sorath_logo.png" alt="logo">
                     </div>
-                   
+
                     <div class="card fat">
                         <div class="card-body">
                             <h4 class="card-title">Register</h4>
                             <form method="POST" class="my-login-validation" novalidate="" action=registration.php>
-                            
-                            <div class="form-group">
+
+                                <div class="form-group">
                                     <label for="name">Name</label>
                                     <input id="name" type="text" class="form-control" name="name" value="" required
                                         autofocus>
@@ -116,7 +114,7 @@
 
                                 <div class="form-group">
                                     <label for="password">Password
-                                       
+
                                     </label>
                                     <input id="pass1" type="password" class="form-control" name="pass1" required
                                         data-eye onChange="form.pass2.pattern=this.value">
@@ -127,22 +125,22 @@
 
                                 <div class="form-group">
                                     <label for="password">Confirm Password
-                                       
+
                                     </label>
                                     <input id="pass2" type="password" class="form-control" name="pass2" required
-                                        data-eye >
+                                        data-eye>
                                     <div class="invalid-feedback">
                                         Confirm Password is required & it should match with password.
                                     </div>
                                 </div>
 
-                                
+
 
                                 <div class="form-group m-0">
                                     <button type="submit" value="Save data" class="btn btn-primary btn-block">
                                         Register
                                     </button>
-                                </div>                              
+                                </div>
                                 <input type="hidden" name="op" value="save" />
 
                             </form>
@@ -167,52 +165,7 @@
         crossorigin="anonymous"></script>
     <script src="js/my-login.js"></script>
 
-    <!-- <div class="container p-3">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Registration form</div>
-            <div class="panel-body">
-
-                <form method=POST action=registration.php>
-
-                    <div class="form-group">
-                        <label>Name:</label>
-                        <input type="text" class="form-control" name="name" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email:</label>
-                        <input type="email" class="form-control" name="email" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Phone:</label>
-                        <input type="text" class="form-control" name="phone" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password:</label>
-                        <input type="password" class="form-control" required name="pass1"
-                            onChange="form.pass2.pattern=this.value" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password confirmation:</label>
-                        <input type="password" class="form-control" name="pass2" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Confirm</label>
-                        <input type="submit" class="btn btn-primary" value="Save data" />
-                    </div>
-
-                    <input type="hidden" name="op" value="save" />
-
-                </form>
-            </div>
-        </div>
-
-    </div> -->
 
 </body>
 
