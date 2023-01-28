@@ -25,7 +25,7 @@ $events = $req->fetchAll();
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>FullCalendar - MySQL</title>
+	<title>Sorath Resort Booking Portal - <?php echo $username_loggedin ?></title>
 
 	<!-- FullCalendar -->
 	<link href='css/fullcalendar.min.css' rel='stylesheet' />
@@ -523,7 +523,7 @@ $events = $req->fetchAll();
 
 							<input type="hidden" type="text" for="date_added" value="getdateinformat();" id="date_added"
 								name="date_added" />
-							<input type="hidden" type="text" for="added_by" value='jay' id="added_by" name="added_by" />
+							<input type="hidden" type="text" for="added_by" value='<?php echo $username_loggedin ?>' id="added_by" name="added_by" />
 							<input type="hidden" type="text" for="amount" value='0' id="amount" name="amount" />
 							<input type="hidden" type="text" for="description" value='NA' id="description"
 								name="description" />
@@ -882,9 +882,9 @@ $events = $req->fetchAll();
 								id="date_added" name="date_added" />
 							<input type="hidden" type="text" for="date_modified" value="2023-01-28 00:00:00"
 								id="date_modified" name="date_modified" />
-							<input type="hidden" type="text" for="modified_by" value="tj"
+							<input type="hidden" type="text" for="modified_by" value="<?php echo $username_loggedin ?>"
 								id="modified_by" name="modified_by" />
-							<input type="hidden" type="text" for="added_by" value='jay' id="added_by" name="added_by" />
+							<input type="hidden" type="text" for="added_by" value='' id="added_by" name="added_by" />
 							<input type="hidden" type="text" for="amount" value='0' id="amount" name="amount" />
 							<input type="hidden" type="text" for="description" value='NA' id="description"
 								name="description" />

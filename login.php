@@ -25,14 +25,16 @@ if (isset($_POST['op'])) {
 
             $db_id = $row[0];
             $db_name = $row[1];
+            
 
             //echo "<br><br>ID: $db_id  Name: $db_name";
 
             setcookie("auth_id", "$db_id");
             setcookie("auth_email", "$email");
+            setcookie("auth_username", "$db_name");
 
             //echo "Success! Cookie value: " . $_COOKIE['auth_id'];
-            header("Location:private.php");
+            header("Location:index.php");
 
             exit;
         }
