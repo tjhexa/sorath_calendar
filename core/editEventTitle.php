@@ -4,8 +4,10 @@ require_once('./../utils/auth.php');
 if (isset($_POST['delete']) && isset($_POST['id'])) {
 
 	$id = $_POST['id'];
+	$date_modified = $_POST['date_modified'];
+	$modified_by = $_POST['modified_by'];
 
-	$sql = "DELETE FROM events WHERE id = $id";
+	$sql = "UPDATE events set is_deleted=1, modified_by='$modified_by',date_modified='$date_modified' WHERE id = $id"; //"DELETE FROM events WHERE id = $id";
 
 	$prepareQuery = $auth->prepare($sql);
 
