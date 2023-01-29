@@ -1140,9 +1140,16 @@ include "headerbar.php";
 					var request = new XMLHttpRequest();
 					request.open('GET', '', true);
 					request.onload = function () {
+						var finalContectStr = eventObj.party_name_full;
+						if(eventObj.check_in_time == "0800")
+						{
+							finalContectStr += ' ' + '(Check In : 08 AM.)'
+						}else{
+							finalContectStr += ' ' + '(Check In : 04 PM.)'
+						}
 						$el.popover({
 							title: eventObj.title,
-							content: eventObj.party_name_full,
+							content: finalContectStr ,
 							trigger: 'hover',
 							placement: 'top',
 							container: 'body'
