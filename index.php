@@ -95,7 +95,11 @@ $events = $req->fetchAll();
 
 <body>
 
+<?php
 
+include "headerbar.php";
+
+?>
 	<!-- Page Content -->
 	<div class="container">
 
