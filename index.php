@@ -22,10 +22,12 @@ $events = $req->fetchAll();
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="Sorath Resort Portal">
+	<meta name="author" content="TJ">
 
-	<title>Sorath Resort Booking Portal - <?php echo $username_loggedin ?></title>
+	<title>Sorath Resort Booking Portal -
+		<?php echo $username_loggedin ?>
+	</title>
 
 	<!-- FullCalendar -->
 	<link href='css/fullcalendar.min.css' rel='stylesheet' />
@@ -35,6 +37,8 @@ $events = $req->fetchAll();
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+	
 	<!-- Custom CSS -->
 
 	<style>
@@ -70,14 +74,14 @@ $events = $req->fetchAll();
 		}
 
 		/* Important part */
-		.modal-dialog {
+		/* .modal-dialog {
 			overflow-y: initial !important
-		}
+		} */
 
-		.modal-body {
+		/* .modal-body {
 			height: 80vh;
 			overflow-y: auto;
-		}
+		} */
 	</style>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -107,7 +111,7 @@ $events = $req->fetchAll();
 		<!-- Modal -->
 		<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 			aria-hidden="true">
-			<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-dialog modal-lg" style="overflow-y: initial !important" role="document">
 				<div class="modal-content">
 					<form class="form-horizontal" method="POST" action="./core/add-event.php">
 
@@ -116,7 +120,7 @@ $events = $req->fetchAll();
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
 									aria-hidden="true">&times;</span></button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body" style="height: 80vh;overflow-y: auto;">
 
 
 							<div class="form-group row">
@@ -408,122 +412,12 @@ $events = $req->fetchAll();
 								</div>
 							</div>
 
-							<!-- <div class="form-group">
-								<label for="booking_type" class="col-sm-5 control-label">Booking Type</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="booking_type" id="booking_type">
-										<option value="on_hold">Oh Hold</option>
-										<option value="final_booking">Final Booking</option>
-										<option value="other">Other</option>
-									</select>
-								</div>
-							</div>
-
-
-
-							<div class="form-group">
-								<label for="duration_type" class="col-sm-5 control-label">Duration Type</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="duration_type" id="duration_type">
-										<option value="half_day">Half Day</option>
-										<option value="full_day">Full Day</option>
-									</select>
-								</div>
-							</div>
-
-
-							<div class="form-group">
-								<label for="check_in_time" class="col-sm-5 control-label">Check In Time</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="check_in_time" id="check_in_time">
-										<option value="0800">08 AM</option>
-										<option value="1600">04 PM</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="check_out_time" class="col-sm-5 control-label">Check Out Time</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="check_out_time" id="check_out_time">
-										<option value="0600">06 AM</option>
-										<option value="1400">02 PM</option>
-									</select>
-								</div>
-							</div>
-
-
-							<div class="form-group">
-								<label for="hold_for_days" class="col-sm-5 control-label">Hold For Days</label>
-								<div class="col-sm-10">
-									<input type="number" step="any" name="hold_for_days" class="form-control" 
-									id="hold_for_days" placeholder="Hold For Days">
-								</div>
-							</div>
-
-
-							<div class="form-group">
-								<label for="title" class="col-sm-2 control-label">Title</label>
-								<div class="col-sm-10">
-									<input type="text" name="title" class="form-control" id="title" placeholder="Title">
-								</div>
-							</div>
-
-
-
-							<div class="form-group">
-								<label for="description" class="col-sm-2 control-label">Description</label>
-								<div class="col-sm-10">
-									<input type="text" name="description" class="form-control" id="description"
-										placeholder="Description">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="amount" class="col-sm-2 control-label">Amount</label>
-								<div class="col-sm-10">
-									<input type="text" name="amount" class="form-control" id="amount"
-										placeholder="amount">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="color" class="col-sm-2 control-label">Color</label>
-								<div class="col-sm-10">
-									<select name="color" class="form-control" id="color">
-										<option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
-										<option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
-										<option style="color:#008000;" value="#008000">&#9724; Green</option>
-										<option style="color:#FFD700;" value="#FFD700">&#9724; Yellow</option>
-										<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
-										<option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
-										<option style="color:#000;" value="#000">&#9724; Black</option>
-
-									</select>
-								</div>
-							</div>
-							<div class="container">
-
-
-
-								<div class="row">
-									<div class="form-group">
-										<label for="start" class="col-sm-12 control-label">Start date</label>
-										<div class="col-sm-12">
-											<input type="text" name="start" class="form-control" id="start" readonly>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="end" class="col-sm-12 control-label">End date</label>
-										<div class="col-sm-12">
-											<input type="text" name="end" class="form-control" id="end" readonly>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							 -->
+							
 
 							<input type="hidden" type="text" for="date_added" value="getdateinformat();" id="date_added"
 								name="date_added" />
-							<input type="hidden" type="text" for="added_by" value='<?php echo $username_loggedin ?>' id="added_by" name="added_by" />
+							<input type="hidden" type="text" for="added_by" value='<?php echo $username_loggedin ?>'
+								id="added_by" name="added_by" />
 							<input type="hidden" type="text" for="amount" value='0' id="amount" name="amount" />
 							<input type="hidden" type="text" for="description" value='NA' id="description"
 								name="description" />
@@ -545,17 +439,36 @@ $events = $req->fetchAll();
 				<div class="modal-content">
 					<form class="form-horizontal" method="POST" action="./core/editEventTitle.php">
 						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">Edit Event</h4>
+							<h4 class="modal-title" id="myModalLabel">
+								<?php if (
+									(isset($user_can_edit) && $user_can_edit == 1) ||
+									(((isset($user_is_admin) && $user_is_admin == 1)))
+								) {
+									echo "Edit Event";
+								} else {
+									echo "View Event";
+								} ?>
+							</h4>
+
+
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
 									aria-hidden="true">&times;</span></button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body" style="height: 80vh;overflow-y: auto;">
 
 
 							<div class="form-group row">
 								<label for="booking_type" class="col-3 col-form-label">Booking Type</label>
 								<div class="col-9">
-									<select id="booking_type" name="booking_type" class="custom-select"
+									<select id="booking_type" name="booking_type" class="custom-select" 
+									<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
 										aria-describedby="booking_typeHelpBlock" required="required">
 										<option value="on_hold">On Hold</option>
 										<option value="final_booking">Final Booking</option>
@@ -569,6 +482,14 @@ $events = $req->fetchAll();
 								<label for="duration_type" class="col-3 col-form-label">Duration Type</label>
 								<div class="col-9">
 									<select id="duration_type" name="duration_type" class="custom-select"
+									<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
 										aria-describedby="duration_typeHelpBlock" required="required">
 										<option value="half_day">Half Day</option>
 										<option value="full_day">Full Day</option>
@@ -581,46 +502,72 @@ $events = $req->fetchAll();
 								<label class="col-3">Check In Time</label>
 								<div class="col-9">
 									<div class="form-check form-check-inline">
-										<!-- <input name="check_in_time" id="check_in_time_0" type="radio"
-											class="form-check-input" value="0800"
-											aria-describedby="check_in_timeHelpBlock" required="required"> -->
-										<label ><input name="check_in_time" id="check_in_time_0" type="radio"
-											class="form-check-input" value="0800"
-											aria-describedby="check_in_timeHelpBlock" required="required">08 AM</label>
+
+										<label><input name="check_in_time" id="check_in_time_0" type="radio"
+												class="form-check-input" value="0800"
+												<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="check_in_timeHelpBlock" required="required">08
+											AM</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<!-- <input name="check_in_time" id="check_in_time_1" type="radio"
-											class="form-check-input" value="1600"
-											aria-describedby="check_in_timeHelpBlock" required="required"> -->
-										<label ><input name="check_in_time" id="check_in_time_1" type="radio"
-											class="form-check-input" value="1600"
-											aria-describedby="check_in_timeHelpBlock" required="required">04 PM</label>
+
+										<label><input name="check_in_time" id="check_in_time_1" type="radio"
+												class="form-check-input" value="1600"
+												<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="check_in_timeHelpBlock" required="required">04
+											PM</label>
 									</div>
-									<!-- <span id="check_in_timeHelpBlock" class="form-text text-muted">Please select Check
-										In Time</span> -->
+
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-3">Check Out Time</label>
 								<div class="col-9">
 									<div class="form-check form-check-inline">
-										<!-- <input name="check_out_time" id="check_out_time_0" type="radio"
-											class="form-check-input" value="0600"
-											aria-describedby="check_out_timeHelpBlock" required="required"> -->
-										<label ><input name="check_out_time" id="check_out_time_0" type="radio"
-											class="form-check-input" value="0600"
-											aria-describedby="check_out_timeHelpBlock" required="required">06 AM</label>
+
+										<label><input name="check_out_time" id="check_out_time_0" type="radio"
+												class="form-check-input" value="0600"
+												<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="check_out_timeHelpBlock" required="required">06
+											AM</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<!-- <input name="check_out_time" id="check_out_time_1" type="radio"
-											class="form-check-input" value="1400"
-											aria-describedby="check_out_timeHelpBlock" required="required"> -->
-										<label ><input name="check_out_time" id="check_out_time_1" type="radio"
-											class="form-check-input" value="1400"
-											aria-describedby="check_out_timeHelpBlock" required="required">02 PM</label>
+
+										<label><input name="check_out_time" id="check_out_time_1" type="radio"
+												class="form-check-input" value="1400"
+												<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="check_out_timeHelpBlock" required="required">02
+											PM</label>
 									</div>
-									<!-- <span id="check_out_timeHelpBlock" class="form-text text-muted">Please select Check
-										Out Time</span> -->
+
 								</div>
 							</div>
 							<div class="form-group row">
@@ -635,6 +582,14 @@ $events = $req->fetchAll();
 										<input id="hold_for_days" name="hold_for_days"
 											placeholder="Please enter Hold For __ Days" type="number" step="any"
 											class="form-control" aria-describedby="hold_for_daysHelpBlock"
+											<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											required="required">
 										<div class="input-group-append">
 											<div class="input-group-text">Days</div>
@@ -654,6 +609,14 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="party_name_full" name="party_name_full"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											placeholder="Please Enter Party Name" type="text" required="required"
 											class="form-control">
 									</div>
@@ -669,6 +632,14 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="party_contact_primary" name="party_contact_primary"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											placeholder="Please Enter Contact Number of Party" type="text"
 											class="form-control" required="required">
 									</div>
@@ -684,6 +655,14 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="party_reference_by" name="party_reference_by"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											placeholder="Please enter Reference Name" type="text" class="form-control">
 									</div>
 								</div>
@@ -699,6 +678,14 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="party_reference_contact" name="party_reference_contact"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											placeholder="Please Enter Reference Contact Number" type="text"
 											class="form-control">
 									</div>
@@ -715,6 +702,14 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="total_days_of_final_booking" name="total_days_of_final_booking"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											type="number" step="any" placeholder="Enter Total Days of Booking/Hold"
 											class="form-control">
 										<div class="input-group-append">
@@ -734,6 +729,14 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="sorath_contact_person" name="sorath_contact_person"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											placeholder="Please Enter Sorath Contact Person Details" type="text"
 											class="form-control">
 									</div>
@@ -743,6 +746,14 @@ $events = $req->fetchAll();
 								<label for="internal_notes" class="col-3 col-form-label">Internal Notes</label>
 								<div class="col-9">
 									<textarea id="internal_notes" name="internal_notes" cols="40" rows="3"
+									<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 										class="form-control" aria-describedby="internal_notesHelpBlock"></textarea>
 									<span id="internal_notesHelpBlock" class="form-text text-muted">Write Down Internal
 										Notes (if any)</span>
@@ -751,15 +762,31 @@ $events = $req->fetchAll();
 							<div class="form-group row">
 								<label class="col-3">Payment</label>
 								<div class="col-9">
-									<div class="form-check form-check-inline">										
-										<label ><input name="party_payment_data" id="party_payment_data_0" type="radio"
-											class="form-check-input" value="yes"
-											aria-describedby="party_payment_dataHelpBlock">Yes</label>
+									<div class="form-check form-check-inline">
+										<label><input name="party_payment_data" id="party_payment_data_0" type="radio"
+												class="form-check-input" value="yes"
+												<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="party_payment_dataHelpBlock">Yes</label>
 									</div>
-									<div class="form-check form-check-inline">									
-										<label ><input name="party_payment_data" id="party_payment_data_1" type="radio"
-											class="form-check-input" value="no"
-											aria-describedby="party_payment_dataHelpBlock">No</label>
+									<div class="form-check form-check-inline">
+										<label><input name="party_payment_data" id="party_payment_data_1" type="radio"
+												class="form-check-input" value="no"
+												<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="party_payment_dataHelpBlock">No</label>
 									</div>
 									<span id="party_payment_dataHelpBlock" class="form-text text-muted">Please Select
 										Payment Option</span>
@@ -769,20 +796,32 @@ $events = $req->fetchAll();
 								<label class="col-3">Token</label>
 								<div class="col-9">
 									<div class="form-check form-check-inline">
-										<!-- <input name="party_token_data" id="party_token_data_0" type="radio"
-											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
-											value="yes"> -->
-										<label ><input name="party_token_data" id="party_token_data_0" type="radio"
-											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
-											value="yes">Yes</label>
+
+										<label><input name="party_token_data" id="party_token_data_0" type="radio"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="party_token_dataHelpBlock" class="form-check-input"
+												value="yes">Yes</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<!-- <input name="party_token_data" id="party_token_data_1" type="radio"
-											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
-											value="no"> -->
-										<label ><input name="party_token_data" id="party_token_data_1" type="radio"
-											aria-describedby="party_token_dataHelpBlock" class="form-check-input"
-											value="no">No</label>
+
+										<label><input name="party_token_data" id="party_token_data_1" type="radio"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+												aria-describedby="party_token_dataHelpBlock" class="form-check-input"
+												value="no">No</label>
 									</div>
 									<span id="party_token_dataHelpBlock" class="form-text text-muted">Please Select
 										Token Option</span>
@@ -791,7 +830,16 @@ $events = $req->fetchAll();
 							<div class="form-group row">
 								<label for="title" class="col-3 col-form-label">Event Type</label>
 								<div class="col-9">
-									<select id="title" name="title" class="custom-select" required="required">
+									<select id="title" name="title" class="custom-select" 
+									<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+									required="required">
 										<option value="marriage">Marriage</option>
 										<option value="anniversary ">Anniversary</option>
 										<option value="engagement">Engagement</option>
@@ -806,7 +854,16 @@ $events = $req->fetchAll();
 							<div class="form-group row">
 								<label for="color" class="col-3 col-form-label">Event Color</label>
 								<div class="col-9">
-									<select id="color" name="color" class="custom-select" required="required">
+									<select id="color" name="color" class="custom-select" 
+									<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " disabled ";
+									} ?>
+									required="required">
 										<option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
 										<option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
 										<option style="color:#008000;" value="#008000">&#9724; Green</option>
@@ -831,6 +888,14 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="start" name="start" placeholder="Event Start Date" type="text"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											class="form-control" required="required">
 									</div>
 								</div>
@@ -846,12 +911,38 @@ $events = $req->fetchAll();
 											</div>
 										</div>
 										<input id="end" name="end" placeholder="Event End Date" type="text"
+										<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo "";
+									} else {
+										echo " readonly ";
+									} ?>
 											class="form-control" required="required">
 									</div>
 								</div>
 							</div>
 
-							<div class="form-group">
+
+							<?php if (
+								(isset($user_can_edit) && $user_can_edit == 1) ||
+								(((isset($user_is_admin) && $user_is_admin == 1)))
+							) {
+								echo "<div class=\"form-group\">
+								<div class=\"col-sm-2\">
+									<label onclick=\"toggleCheck('check1');\" class=\"label-off\" for=\"check1\"
+										id=\"check1_label\">
+										Delete
+									</label>
+									<input class=\"nocheckbox\" type=\"checkbox\" id=\"check1\" name=\"delete\">
+								</div>
+							</div>";
+							} else {
+								;
+							} ?>
+
+							<!-- <div class="form-group">
 								<div class="col-sm-2">
 									<label onclick="toggleCheck('check1');" class="label-off" for="check1"
 										id="check1_label">
@@ -859,7 +950,7 @@ $events = $req->fetchAll();
 									</label>
 									<input class="nocheckbox" type="checkbox" id="check1" name="delete">
 								</div>
-							</div>
+							</div> -->
 							<script>
 								function toggleCheck(check) {
 									if ($('#' + check).is(':checked')) {
@@ -871,6 +962,9 @@ $events = $req->fetchAll();
 									}
 								}		  
 							</script>
+
+
+
 							<input type="hidden" name="id" class="form-control" id="id">
 							<input type="hidden" type="text" for="date_added" value="2023-01-28 00:00:00"
 								id="date_added" name="date_added" />
@@ -887,12 +981,42 @@ $events = $req->fetchAll();
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Save</button>
+
+							<?php if (
+								(isset($user_can_edit) && $user_can_edit == 1) ||
+								(((isset($user_is_admin) && $user_is_admin == 1)))
+							) {
+								echo "<button type='submit' class='btn btn-primary'>Save</button>";
+							} else {
+								;
+							} ?>
+
+
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
+
+
+		<div id="myModalEventUpdated" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Event Updated!</h4>
+                    <button type="button" class="close" data-dismiss="modal"
+                        onclick="javascript:window.location.href='index.php';" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Your Event date has been successfully updated. Click OK to continue</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"
+                        onclick="javascript:window.location.href='index.php';">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	</div>
 	<!-- /.container -->
@@ -951,9 +1075,26 @@ $events = $req->fetchAll();
 				selectHelper: true,
 				select: function (start, end) {
 
-					$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+					<?php
+					if (isset($_COOKIE['is_admin']) && $_COOKIE['is_admin'] == 1) {
+						echo
+							"$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
 					$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-					$('#ModalAdd').modal('show');
+					$('#ModalAdd').modal('show');";
+					} else
+						if (isset($_COOKIE['can_add']) && $_COOKIE['can_add'] == 1) {
+							echo
+								"$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+					$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+					$('#ModalAdd').modal('show');";
+						}
+
+					?>
+					// $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+					// $('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+					// $('#ModalAdd').modal('show');
+
+
 				},
 				eventAfterRender: function (eventObj, $el) {
 					var request = new XMLHttpRequest();
@@ -984,23 +1125,27 @@ $events = $req->fetchAll();
 						$('#ModalEdit #duration_type').val(event.duration_type);
 
 						if (event.check_in_time == "0800") {
-							//$('#ModalEdit #check_in_time_0').click(); 
+
 							$("#ModalEdit #check_in_time_0").click();
-							//$("#ModalEdit #check_in_time_1").attr("checked", false);
+							$("#ModalEdit #check_in_time_0").prop('checked', true);
+
 						} else {
 							$("#ModalEdit #check_in_time_1").click();
-							//$("#ModalEdit #check_in_time_0").attr("checked", false);
+							$("#ModalEdit #check_in_time_1").prop('checked', true);
+
 						}
 
-						//$('#ModalEdit #check_in_time').val(event.check_in_time);
+
 
 						if (event.check_out_time == "0600") {
 							$('#ModalEdit #check_out_time_0').click();
+							$('#ModalEdit #check_out_time_0').prop('checked', true);
 						} else {
 							$('#ModalEdit #check_out_time_1').click();
+							$('#ModalEdit #check_out_time_1').prop('checked', true);
 						}
 
-						//$('#ModalEdit #check_out_time').val(event.check_out_time);
+
 
 						$('#ModalEdit #hold_for_days').val(event.hold_for_days);
 
@@ -1011,21 +1156,25 @@ $events = $req->fetchAll();
 						$('#ModalEdit #total_days_of_final_booking').val(event.total_days_of_final_booking);
 						$('#ModalEdit #sorath_contact_person').val(event.sorath_contact_person);
 						$('#ModalEdit #internal_notes').val(event.internal_notes);
-						//$('#ModalEdit #party_payment_data').val(event.party_payment_data);
+
 
 						if (event.party_payment_data == "yes") {
 							$('#ModalEdit #party_payment_data_0').click();
+							$('#ModalEdit #party_payment_data_0').prop('checked', true);
 						} else {
 							$('#ModalEdit #party_payment_data_1').click();
+							$('#ModalEdit #party_payment_data_1').prop('checked', true);
 						}
 
 						if (event.party_token_data == "yes") {
 							$('#ModalEdit #party_token_data_0').click();
+							$('#ModalEdit #party_token_data_0').prop('checked', true);
 						} else {
 							$('#ModalEdit #party_token_data_1').click();
+							$('#ModalEdit #party_token_data_1').prop('checked', true);
 						}
 
-						//$('#ModalEdit #party_token_data').val(event.party_token_data);
+
 						$('#ModalEdit #date_added').val(event.date_added);
 						$('#ModalEdit #added_by').val(event.added_by);
 
@@ -1034,13 +1183,28 @@ $events = $req->fetchAll();
 					});
 				},
 				eventDrop: function (event, delta, revertFunc) { // si changement de position
-
-					edit(event);
+					<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo " edit(event); ";
+									} else {
+										echo "  location.reload(true);  ";
+									} ?>
+					//edit(event);
 
 				},
 				eventResize: function (event, dayDelta, minuteDelta, revertFunc) { // si changement de longueur
 
-					edit(event);
+					<?php if (
+										(isset($user_can_edit) && $user_can_edit == 1) ||
+										(((isset($user_is_admin) && $user_is_admin == 1)))
+									) {
+										echo " edit(event); ";
+									} else {
+										echo "  location.reload(true); ";
+									} ?>
+					//edit(event);
 
 				},
 				events: [
@@ -1115,7 +1279,8 @@ $events = $req->fetchAll();
 					success: function (rep) {
 						console.log(rep);
 						if (rep == 'OK') {
-							alert('Saved');
+							//alert('Saved');
+							$('#myModalEventUpdated').modal('show');
 						} else {
 							alert('Could not be saved. try again.');
 						}
