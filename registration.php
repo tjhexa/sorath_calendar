@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -31,6 +31,19 @@
     <?php
 
     include "database.php";
+    include "restricted.php";
+
+
+
+    if (isset($_COOKIE['is_admin'])) {
+
+        $is_admin = $_COOKIE['is_admin'];
+        if ($is_admin == 0) {
+            echo "Unauthorized access! Please contact administrator.";
+            exit;
+        }
+    }
+
 
 
     if (isset($_POST['op'])) {
@@ -40,12 +53,16 @@
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $pass = $_POST['pass1'];
+        $date_added = gmdate('Y-m-d h:i:s \G\M\T', time());
+        $is_admin = false;
+        $is_deleted = false;
+        $can_edit = $_POST['can_edit'];
 
         if ($op == "save") {
             // echo "$name - $email - $phone - $pass";
     
-            $sql = "INSERT INTO users (name,email,phone,password)
-                  VALUES ('$name','$email','$phone',PASSWORD('$pass'))";
+            $sql = "INSERT INTO users (name,email,phone,password,date_added,is_admin,is_deleted,can_edit)
+                  VALUES ('$name','$email','$phone',PASSWORD('$pass'), '$date_added', '$is_admin', '$is_deleted', '$can_edit')";
 
             if (mysqli_connect_errno()) {
                 echo ("Connect failed: %s " + mysqli_connect_error());
@@ -90,15 +107,17 @@
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <div class="modal-header">                    
+                <div class="modal-header">
                     <h4 class="modal-title">Registration Successful.</h4>
-                    <button type="button" class="close" data-dismiss="modal" onclick="javascript:window.location.href='login.php';" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal"
+                        onclick="javascript:window.location.href='login.php';" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <p>New user registration successful. Please click on Login to goto Login Screen.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="javascript:window.location.href='login.php';">Login</button>                    
+                    <button type="button" class="btn btn-success"
+                        onclick="javascript:window.location.href='login.php';">Login</button>
                 </div>
             </div>
         </div>
@@ -163,6 +182,25 @@
                                         data-eye>
                                     <div class="invalid-feedback">
                                         Confirm Password is required & it should match with password.
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="can_edit">Can Edit Events?</label>
+                                    <div class="col-9">
+                                        <div class="form-check form-check-inline">
+                                            <label><input name="can_edit" id="can_edit_0" type="radio"
+                                                    class="form-check-input" value="1"
+                                                    aria-describedby="can_edit_dataHelpBlock">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label><input name="can_edit" id="can_edit_1" type="radio"
+                                                    class="form-check-input" value="0"
+                                                    aria-describedby="can_edit_dataHelpBlock">No</label>
+                                        </div>
+                                        <span id="can_edit_dataHelpBlock" class="form-text text-muted">Please Select
+                                            Edit Rights</span>
                                     </div>
                                 </div>
 

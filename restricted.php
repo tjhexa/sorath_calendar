@@ -9,12 +9,13 @@ if (isset($_COOKIE['auth_id'])) {
     $sql = "SELECT id FROM users WHERE id='$id' AND email='$email'";
     $result = mysqli_query($link, $sql);
 
-    if (mysqli_num_rows($result) == 0) {
-        echo "Unauthorized access!";
+    if (mysqli_num_rows($result) == 0) {        
+        header("Location: login.php");
         exit;
     }
-}else{
-    echo "Unauthorized access! Please Login.";
+} else {
+    //echo "Unauthorized access! Please Login.";
+    header("Location: login.php");
     exit;
 }
 

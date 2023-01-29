@@ -751,18 +751,12 @@ $events = $req->fetchAll();
 							<div class="form-group row">
 								<label class="col-3">Payment</label>
 								<div class="col-9">
-									<div class="form-check form-check-inline">
-										<!-- <input name="party_payment_data" id="party_payment_data_0" type="radio"
-											class="form-check-input" value="yes"
-											aria-describedby="party_payment_dataHelpBlock"> -->
+									<div class="form-check form-check-inline">										
 										<label ><input name="party_payment_data" id="party_payment_data_0" type="radio"
 											class="form-check-input" value="yes"
 											aria-describedby="party_payment_dataHelpBlock">Yes</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<!-- <input name="party_payment_data" id="party_payment_data_1" type="radio"
-											class="form-check-input" value="no"
-											aria-describedby="party_payment_dataHelpBlock"> -->
+									<div class="form-check form-check-inline">									
 										<label ><input name="party_payment_data" id="party_payment_data_1" type="radio"
 											class="form-check-input" value="no"
 											aria-describedby="party_payment_dataHelpBlock">No</label>

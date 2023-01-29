@@ -9,7 +9,7 @@ if (isset($_POST['op'])) {
     $pass = $_POST['pass'];
 
     if ($op == "login") {
-        $sql = "SELECT id,name FROM users WHERE email='$email' AND PASSWORD('$pass') = password";
+        $sql = "SELECT id,name,is_admin,can_edit,is_deleted FROM users WHERE email='$email' AND PASSWORD('$pass') = password";
         $result = mysqli_query($link, $sql);
 
         // FAILED LOGIN
@@ -25,13 +25,19 @@ if (isset($_POST['op'])) {
 
             $db_id = $row[0];
             $db_name = $row[1];
-            
+            $db_is_admin = $row[2];
+            $db_can_edit = $row[3];
+            $db_is_deleted = $row[4];
 
             //echo "<br><br>ID: $db_id  Name: $db_name";
 
             setcookie("auth_id", "$db_id");
             setcookie("auth_email", "$email");
             setcookie("auth_username", "$db_name");
+
+            setcookie("is_admin", "$db_is_admin");
+            setcookie("can_edit", "$db_can_edit");
+            setcookie("is_deleted", "$db_is_deleted");
 
             //echo "Success! Cookie value: " . $_COOKIE['auth_id'];
             header("Location:index.php");
