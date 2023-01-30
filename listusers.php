@@ -28,7 +28,12 @@
 
 <body>
 
+  
+<?php
 
+include "headerbar.php";
+
+?>
 
     <?php
 
@@ -48,25 +53,23 @@
 
     ?>
 
-    
-<?php
-
-include "headerbar.php";
-
-?>
+  
     <div class="container">
         <h2>User List</h2>
         <p>All available sorath portal users list:</p>
-        <table class="table table-hover">
+        <a href="registration.php" class="btn btn-info " role="button">Add New User</a><br /><br />
+        <table class="table table-hover table-sm">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Is Admin?</th>
+                    <th scope="col">Can Add Events?</th>
                     <th scope="col">Can Edit Events?</th>
                     <th scope="col">Date Added</th>
                     <th scope="col">Is Deleted?</th>
+                    <th scope="col">Edit User</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,9 +87,9 @@ include "headerbar.php";
                     ?>
                     
                     <tr class="<?php if ($row['is_admin'] == 1) {
-                        echo "success";
+                        echo "table-primary";
                     } else if ($row['is_deleted'] == 1){
-                        echo "danger";
+                        echo "table-danger";
                     } else {
                         echo "";
                     } ?>">
@@ -108,7 +111,14 @@ include "headerbar.php";
                             }
                             ; ?>
                         </td>
-
+                        <td>
+                            <?php if ($row['can_add'] == 1) {
+                                echo "YES";
+                            } else {
+                                echo "No";
+                            }
+                            ; ?>
+                        </td>
                         <td>
                             <?php if ($row['can_edit'] == 1) {
                                 echo "YES";
@@ -129,6 +139,10 @@ include "headerbar.php";
                             }
                             ; ?>
                         </td>
+                        <td>
+                            <a href="edituser.php?id=<?=$row['id'];?>" > Edit </a>
+                            
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -145,6 +159,7 @@ include "headerbar.php";
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="js/my-login.js"></script>
+    <script src="js/sitewide.js"></script>
 
 
 

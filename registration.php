@@ -26,7 +26,12 @@
 
 <body class="my-login-page">
 
+ 
+<?php
 
+include "headerbar.php";
+
+?>
 
     <?php
 
@@ -57,12 +62,13 @@
         $is_admin = false;
         $is_deleted = false;
         $can_edit = $_POST['can_edit'];
+        $can_add = $_POST['can_add'];
 
         if ($op == "save") {
             // echo "$name - $email - $phone - $pass";
     
-            $sql = "INSERT INTO users (name,email,phone,password,date_added,is_admin,is_deleted,can_edit)
-                  VALUES ('$name','$email','$phone',PASSWORD('$pass'), '$date_added', '$is_admin', '$is_deleted', '$can_edit')";
+            $sql = "INSERT INTO users (name,email,phone,password,date_added,is_admin,is_deleted,can_edit, can_add)
+                  VALUES ('$name','$email','$phone',PASSWORD('$pass'), '$date_added', '$is_admin', '$is_deleted', '$can_edit','$can_add')";
 
             if (mysqli_connect_errno()) {
                 echo ("Connect failed: %s " + mysqli_connect_error());
@@ -103,6 +109,7 @@
     }
 
     ?>
+    
     <!-- Modal HTML -->
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
@@ -187,16 +194,34 @@
 
 
                                 <div class="form-group">
+                                    <label for="can_add">Can Add Events?</label>
+                                    <div class="col-9">
+                                        <div class="form-check form-check-inline">
+                                            <label><input name="can_add" id="can_add_0" type="radio"
+                                                    class="form-check-input" value="1"
+                                                    aria-describedby="can_add_dataHelpBlock">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label><input name="can_add" id="can_add_1" type="radio"
+                                                    class="form-check-input" value="0" checked
+                                                    aria-describedby="can_add_dataHelpBlock">No</label>
+                                        </div>
+                                        <span id="can_add_dataHelpBlock" class="form-text text-muted">Please Select
+                                            Add Rights</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="can_edit">Can Edit Events?</label>
                                     <div class="col-9">
                                         <div class="form-check form-check-inline">
-                                            <label><input name="can_edit" id="can_edit_0" type="radio"
+                                            <label><input name="can_edit" id="can_edit_0" type="radio" 
                                                     class="form-check-input" value="1"
                                                     aria-describedby="can_edit_dataHelpBlock">Yes</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <label><input name="can_edit" id="can_edit_1" type="radio"
-                                                    class="form-check-input" value="0"
+                                                    class="form-check-input" value="0" checked
                                                     aria-describedby="can_edit_dataHelpBlock">No</label>
                                         </div>
                                         <span id="can_edit_dataHelpBlock" class="form-text text-muted">Please Select
@@ -234,7 +259,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="js/my-login.js"></script>
-
+    <script src="js/sitewide.js"></script>
 
 
 </body>
