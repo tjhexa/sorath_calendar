@@ -9,7 +9,10 @@ if (isset($_POST['op'])) {
     $pass = $_POST['pass'];
 
     if ($op == "login") {
-        $sql = "SELECT id,name,is_admin,can_edit,is_deleted, can_add FROM users WHERE email='$email' AND PASSWORD('$pass') = password";
+        $sql = "SELECT id,name,is_admin,can_edit,is_deleted, can_add FROM users WHERE email='$email' AND ((MD5('$pass'))) = password;";
+
+        //echo $sql;
+
         $result = mysqli_query($link, $sql);
 
         // FAILED LOGIN

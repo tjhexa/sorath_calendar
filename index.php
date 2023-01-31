@@ -441,6 +441,11 @@ include "headerbar.php";
 			aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
+
+				<div class="alert alert-success" role="alert">                    
+                    <p class="mb-0" id="event_added_modal_txt"></p>					
+                </div>
+
 					<form class="form-horizontal" method="POST" action="./core/editEventTitle.php">
 						<div class="modal-header">
 							<h4 class="modal-title" id="myModalLabel">
@@ -1203,7 +1208,7 @@ include "headerbar.php";
 						$('#ModalEdit #total_days_of_final_booking').val(event.total_days_of_final_booking);
 						$('#ModalEdit #sorath_contact_person').val(event.sorath_contact_person);
 						$('#ModalEdit #internal_notes').val(event.internal_notes);
-
+						$('#ModalEdit #event_added_modal_txt').html('Event added by : ' + event.added_by);
 
 						if (event.party_payment_data == "yes") {
 							$('#ModalEdit #party_payment_data_0').click();

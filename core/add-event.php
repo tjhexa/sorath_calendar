@@ -53,7 +53,7 @@ if (isset($_POST['title'])) {
 	 '$party_token_data',
 	 '$date_added',
 	 '$added_by')";
-	echo $sql;
+	//echo $sql;
 
 	$prepareQuery = $auth->prepare($sql);
 

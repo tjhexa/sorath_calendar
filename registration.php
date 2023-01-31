@@ -58,9 +58,13 @@ include "headerbar.php";
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $pass = $_POST['pass1'];
-        $date_added = gmdate('Y-m-d h:i:s \G\M\T', time());
-        $is_admin = false;
-        $is_deleted = false;
+        
+        //date_default_timezone_set('GMT');
+
+        //echo date("Y-m-d,h:m:s");
+        $date_added = gmdate('Y-m-d h:i:s');
+        $is_admin = 0;
+        $is_deleted = 0;
         $can_edit = $_POST['can_edit'];
         $can_add = $_POST['can_add'];
 
@@ -68,7 +72,7 @@ include "headerbar.php";
             // echo "$name - $email - $phone - $pass";
     
             $sql = "INSERT INTO users (name,email,phone,password,date_added,is_admin,is_deleted,can_edit, can_add)
-                  VALUES ('$name','$email','$phone',PASSWORD('$pass'), '$date_added', '$is_admin', '$is_deleted', '$can_edit','$can_add')";
+                  VALUES ('$name','$email','$phone',MD5('$pass'), '$date_added', '$is_admin', '$is_deleted', '$can_edit','$can_add')";
 
             if (mysqli_connect_errno()) {
                 echo ("Connect failed: %s " + mysqli_connect_error());

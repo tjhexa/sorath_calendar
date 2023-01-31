@@ -125,7 +125,8 @@ include "headerbar.php";
                 print_r($prepareQuery->errorInfo());
                 die('Error executing the query.');
             }
-            header("Location: listusers.php");
+            //header("Location: listusers.php");
+            echo "<script> location.replace(\"listusers.php\"); </script>";
             exit();
         }
         else
@@ -144,7 +145,7 @@ include "headerbar.php";
             $sql = "UPDATE users SET name='$name',email='$email', phone='$phone', can_edit='$can_edit', can_add ='$can_add' where id=$id";
 
             if(isset($_POST['pass1']) && !empty($_POST['pass1'])){
-                $sql = "UPDATE users SET name='$name', password =PASSWORD('$pass'),email='$email', phone='$phone', can_edit='$can_edit', can_add ='$can_add' where id=$id";
+                $sql = "UPDATE users SET name='$name', password =MD5('$pass'),email='$email', phone='$phone', can_edit='$can_edit', can_add ='$can_add' where id=$id";
             }
         
 
