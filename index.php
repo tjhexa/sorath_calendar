@@ -1142,15 +1142,20 @@ include "headerbar.php";
 
 				},
 				eventAfterRender: function (eventObj, $el) {
+					console.log($el);
+
+
 					var request = new XMLHttpRequest();
 					request.open('GET', '', true);
 					request.onload = function () {
 						var finalContectStr = eventObj.party_name_full;
 						if(eventObj.check_in_time == "0800")
 						{
-							finalContectStr += ' ' + '(Check In : 08 AM.)'
+							finalContectStr += ' ' + '(Check In : 08 AM.)';
+							
 						}else{
-							finalContectStr += ' ' + '(Check In : 04 PM.)'
+							finalContectStr += ' ' + '(Check In : 04 PM.)';
+							$($el.parent()).css("padding-left", "50px");
 						}
 						$el.popover({
 							title: eventObj.title,
