@@ -99,10 +99,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `date_added`, `is_admin`, `can_edit`, `is_deleted`, `can_add`) VALUES
-(15, 'jay', 'jay@jay.com', '*B4F905776A4FA15AD76BC3223AAA21020C2950DC', '+1 (804) 726-3572', NULL, 0, 0, 0, 0),
-(16, 'j2', 'j2@j2.com', '*8B4ECB6865732AD1A7ACFD8B77C0601C4579865B', '+1 (681) 264-1854', '2023-01-29 22:08:30', 1, 0, 0, 0),
-(34, 'notedit', 'notedit@notedit.com', '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257', '345345345', '2023-01-29 04:28:11', 0, 0, 0, 1),
-(39, 'can_edit', 'canedit@canedit.com', '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257', '234234234', '2023-01-29 06:17:54', 0, 1, 0, 0);
+(15, 'jay', 'jay@jay.com', '*', '+1 (804) 726-3572', NULL, 0, 0, 0, 0),
+(16, 'j2', 'j2@j2.com', '*', '+1 (681) 264-1854', '2023-01-29 22:08:30', 1, 0, 0, 0),
+(34, 'notedit', 'notedit@notedit.com', '*', '345345345', '2023-01-29 04:28:11', 0, 0, 0, 1),
+(39, 'can_edit', 'canedit@canedit.com', '*', '234234234', '2023-01-29 06:17:54', 0, 1, 0, 0);
 
 --
 -- Indexes for dumped tables
